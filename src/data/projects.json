@@ -18,7 +18,7 @@
     "client": "Farell Rhezky Alvianto",
     "description": "A high-performance personal brand showcase for Farell Rhezky Alvianto.",
     "tech": ["Astro", "Tailwind", "Vercel"],    
-    "link": "https://farell-rhezky-portofolio.vercel.app/",
+    "link": "https://rezcode.vercel.app/",
     "image": "/projectpict/Rezcode.png",
     "icon": "🚀",
     "featured": false,
