@@ -1,0 +1,23 @@
+{
+  "name": "RezCode - Premium Digital Solutions",
+  "short_name": "RezCode",
+  "description": "RezCode delivers cutting-edge web solutions with futuristic design and unmatched performance.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0f19",
+  "theme_color": "#507abd",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -2,11 +2,11 @@
 
 @theme {
   --color-brand-dark: #0c0f19;
-  --color-brand-primary: #507abd;
-  --color-brand-secondary: #6e9fd5;
+  --color-brand-primary: #3b65a4;
+  --color-brand-secondary: #4080bf;
   --color-brand-light: #f8fbfd;
 
-  --font-display: "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", system-ui, sans-serif;
 
   --animate-float: float 6s ease-in-out infinite;
 }
@@ -145,4 +145,42 @@ body {
     transform: scale(4);
     opacity: 0;
   }
+}
+
+.group,
+#progress-bar {
+  will-change: transform, opacity, width;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient 3s linear infinite;
+}
+
+.animate-float-delayed {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+/* Performance Optimization: Content Visibility */
+section:not(#home) {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px; /* Placeholder size to prevent jumpiness */
+}
+
+/* Ensure the above doesn't break AOS visibility */
+.aos-animate {
+  content-visibility: visible !important;
 }

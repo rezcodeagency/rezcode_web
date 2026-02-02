@@ -9,39 +9,50 @@ const IconMap: any = {
 };
 ---
 
-<section
-  id="contact"
-  class="pt-32 pb-0 px-6 bg-gradient-to-b from-brand-dark to-[#050810] relative overflow-hidden"
->
-  <div class="max-w-6xl mx-auto">
-    <!-- Main Contact Card -->
-    <div
-      data-aos="fade-up"
-      class="bg-brand-primary/5 border border-brand-primary/20 rounded-[3rem] p-8 md:p-16 text-center relative overflow-hidden glow-card"
-    >
-      <div
-        class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-brand-primary/5 blur-[80px] rounded-full -z-10"
-      >
-      </div>
+<section id="contact" class="py-24 px-6 bg-[#050810] relative overflow-hidden">
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-primary/10 blur-[120px] rounded-full pointer-events-none"
+  >
+  </div>
 
-      <div class="overflow-hidden">
+  <div class="max-w-5xl mx-auto relative z-10">
+    <div
+      data-aos="zoom-in-up"
+      class="relative bg-white/[0.02] border border-white/10 rounded-[2.5rem] p-10 md:p-20 text-center overflow-hidden backdrop-blur-sm"
+    >
+      <span
+        class="inline-block text-brand-primary text-xs font-bold uppercase tracking-[0.4em] mb-6"
+        data-aos="fade-up"
+      >
+        Get In Touch
+      </span>
+
+      <div class="mb-8 py-2">
         <h2
-          class="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter animate-reveal-text"
+          class="text-4xl md:text-7xl font-black text-white tracking-tighter leading-[1.1] md:leading-[1]"
+          data-aos="fade-up"
+          data-aos-delay="100"
         >
-          Let's Talk Business?
+          Ready to start your <br class="hidden md:block" />
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary inline-block pb-2"
+          >
+            next big project?
+          </span>
         </h2>
       </div>
+
       <p
-        class="text-brand-secondary text-xl mb-12 max-w-2xl mx-auto"
+        class="text-white/50 text-base md:text-xl mb-12 max-w-xl mx-auto leading-relaxed"
         data-aos="fade-up"
         data-aos-delay="200"
       >
-        Have a visionary idea? We have the engineering muscle to build it. Reach
-        out directly.
+        Whether you have a question or a visionary idea, my inbox is always
+        open. Let’s build something extraordinary together.
       </p>
 
       <div
-        class="flex flex-col sm:flex-row gap-6 justify-center items-center"
+        class="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center"
         data-aos="fade-up"
         data-aos-delay="300"
       >
@@ -52,11 +63,15 @@ const IconMap: any = {
               <a
                 href={channel.href}
                 target={channel.href.startsWith("http") ? "_blank" : "_self"}
-                aria-label={`Contact us via ${channel.label}`}
-                class={`px-8 py-4 ${channel.color} font-bold rounded-2xl hover:brightness-110 hover:scale-105 transition-all flex items-center gap-3 ${channel.shadow}`}
+                aria-label={`Contact via ${channel.label}`}
+                class={`group px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-1 ${
+                  channel.label.toLowerCase().includes("email")
+                    ? "bg-white text-black hover:bg-brand-primary hover:text-white"
+                    : "bg-white/5 text-white border border-white/10 hover:border-brand-primary hover:bg-brand-primary/10"
+                }`}
               >
-                <Icon className="w-6 h-6" aria-hidden="true" />
-                {channel.label}
+                <Icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <span>{channel.label}</span>
               </a>
             );
           })
@@ -65,3 +80,9 @@ const IconMap: any = {
     </div>
   </div>
 </section>
+
+<style>
+  .glow-card {
+    box-shadow: 0 0 50px -12px rgba(var(--brand-primary-rgb), 0.1);
+  }
+</style>

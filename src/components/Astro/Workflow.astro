@@ -14,28 +14,35 @@ const IconMap: any = {
   <div class="absolute inset-0 bg-brand-primary/5 opacity-50 tech-grid"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="text-center mb-20 text-center">
+    <div class="text-center mb-20">
       <h2
-        class="text-brand-secondary font-bold tracking-widest uppercase mb-4"
+        class="text-brand-secondary font-bold tracking-widest uppercase text-xs mb-4"
         data-aos="fade-up"
       >
-        The Algorithm
+        Our Process
       </h2>
       <div class="overflow-hidden">
         <h3
-          class="text-4xl md:text-5xl font-black text-white animate-reveal-text"
+          class="text-4xl md:text-5xl font-black text-white tracking-tighter"
+          data-aos="fade-up"
+          data-aos-delay="100"
         >
-          How We Operate
+          Your Vision, <span class="text-brand-primary">Our Execution.</span>
         </h3>
       </div>
+      <p
+        class="text-brand-light/60 mt-4 max-w-xl mx-auto text-sm md:text-base leading-relaxed"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        A strategic workflow designed to ensure your website isn't just visually
+        stunning, but also high-performing for your business or personal brand.
+      </p>
     </div>
 
-    <div class="relative grid md:grid-cols-4 gap-8">
-      {/* Connecting Line (Desktop) */}
+    <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
       <div
-        class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-brand-primary/30 to-transparent"
-        data-aos="fade-right"
-        data-aos-delay="400"
+        class="hidden lg:block absolute top-12 left-[10%] w-[80%] h-[1px] bg-gradient-to-r from-transparent via-brand-primary/20 to-transparent"
       >
       </div>
 
@@ -45,20 +52,25 @@ const IconMap: any = {
           return (
             <div
               data-aos="fade-up"
-              data-aos-delay={step.delay}
-              class="relative group"
+              data-aos-delay={index * 150}
+              class="relative group text-center"
             >
-              <div class="w-24 h-24 mx-auto bg-brand-dark border-2 border-brand-primary/30 rounded-full flex items-center justify-center mb-6 relative z-10 group-hover:border-brand-primary group-hover:scale-110 group-hover:rotate-6 transition-all shadow-[0_0_20px_rgba(80,122,189,0.2)]">
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 text-[6rem] font-black text-white/[0.02] select-none pointer-events-none group-hover:text-brand-primary/5 transition-colors duration-500">
+                0{index + 1}
+              </div>
+
+              <div class="w-20 h-20 mx-auto bg-brand-dark border border-white/10 rounded-2xl flex items-center justify-center mb-8 relative z-10 group-hover:border-brand-primary group-hover:shadow-[0_0_30px_rgba(var(--brand-primary-rgb),0.2)] transition-all duration-500 bg-gradient-to-br from-white/[0.05] to-transparent">
                 <Icon
-                  className="w-10 h-10 text-brand-primary group-hover:animate-pulse"
+                  className="w-8 h-8 text-brand-primary group-hover:scale-110 transition-transform duration-500"
                   aria-hidden="true"
                 />
               </div>
-              <div class="text-center">
-                <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand-primary transition-colors">
+
+              <div class="relative z-10 px-4">
+                <h4 class="text-xl font-bold text-white mb-3 group-hover:text-brand-primary transition-colors">
                   {step.title}
                 </h4>
-                <p class="text-sm text-brand-secondary leading-relaxed">
+                <p class="text-sm text-white/50 leading-relaxed min-h-[60px]">
                   {step.description}
                 </p>
               </div>

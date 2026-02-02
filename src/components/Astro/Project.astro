@@ -1,9 +1,10 @@
 ---
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import projects from "../../data/projects.json";
+import { Image } from "astro:assets";
 ---
 
-<section id="showcase" class="py-24 bg-brand-dark relative overflow-hidden">
+<section id="project" class="py-24 bg-brand-dark relative overflow-hidden">
   <!-- Grid Background -->
   <div
     class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)] pointer-events-none"
@@ -17,13 +18,13 @@ import projects from "../../data/projects.json";
       >
         Selected Missions
       </h2>
-      <h3 class="text-4xl md:text-6xl font-black text-white tracking-tighter">
-        Proven Track Record
-      </h3>
+      <h2 class="text-4xl md:text-6xl font-black text-white tracking-tighter">
+        Proven Result
+      </h2>
       <p
         class="text-brand-light/60 mt-4 max-w-2xl mx-auto text-lg leading-relaxed"
       >
-        Real projects, real results. Our portfolio showcases cutting-edge
+        Real projects, real results. Our portfolio features cutting-edge
         solutions delivered to satisfied clients.
       </p>
     </div>
@@ -74,10 +75,13 @@ import projects from "../../data/projects.json";
                 class={`relative h-56 md:h-64 overflow-hidden bg-gradient-to-br ${project.color}`}
               >
                 {project.image ? (
-                  <img
+                  <Image
                     src={project.image}
                     alt={`Screenshot of ${project.title}`}
                     loading="lazy"
+                    width={800}
+                    height={600}
+                    format="webp"
                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 grayscale-[20%] group-hover:grayscale-0"
                   />
                 ) : (
@@ -106,9 +110,9 @@ import projects from "../../data/projects.json";
                 <div class="text-[10px] text-brand-secondary mb-3 font-black uppercase tracking-[0.2em] translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
                   {project.client}
                 </div>
-                <h4 class="text-2xl md:text-3xl font-black text-white mb-4 group-hover:text-brand-primary transition-colors duration-500">
+                <h3 class="text-2xl md:text-3xl font-black text-white mb-4 group-hover:text-brand-primary transition-colors duration-500">
                   {project.title}
-                </h4>
+                </h3>
                 <p class="text-brand-light/60 mb-8 leading-relaxed text-sm md:text-base line-clamp-3">
                   {project.description}
                 </p>
@@ -127,6 +131,7 @@ import projects from "../../data/projects.json";
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Visit ${project.title} live website`}
                       class="p-3 rounded-xl bg-brand-primary/10 text-brand-primary border border-brand-primary/20 hover:bg-brand-primary hover:text-white transition-all duration-500 group/btn"
                     >
                       <ExternalLink className="w-5 h-5 group-hover/btn:scale-110 transition-transform" />
@@ -145,7 +150,7 @@ import projects from "../../data/projects.json";
       projects.length > 1 && (
         <div
           id="project-dots"
-          class="flex justify-center gap-2 mt-8"
+          class="flex justify-center gap-1 mt-8"
           role="tablist"
         >
           {projects.map((_, i) => (
@@ -153,8 +158,12 @@ import projects from "../../data/projects.json";
               role="tab"
               aria-label={`Go to project ${i + 1}`}
               aria-selected={i === 0 ? "true" : "false"}
-              class={`h-2 rounded-full transition-all duration-300 cursor-pointer ${i === 0 ? "w-8 bg-brand-primary" : "w-2 bg-white/20 hover:bg-white/40"}`}
-            />
+              class="p-2 cursor-pointer group"
+            >
+              <div
+                class={`h-2 rounded-full transition-all duration-300 ${i === 0 ? "w-8 bg-brand-primary" : "w-2 bg-white/20 group-hover:bg-white/40"}`}
+              />
+            </div>
           ))}
         </div>
       )
@@ -166,47 +175,77 @@ import projects from "../../data/projects.json";
   const slider = document.getElementById("project-slider");
   const prevBtn = document.getElementById("project-prev");
   const nextBtn = document.getElementById("project-next");
-  const dots = document.querySelectorAll("#project-dots div");
+  const dots = document.querySelectorAll("#project-dots > div"); // Correct selector for dots
   const cards = slider?.querySelectorAll(".glow-card") || [];
 
-  if (slider && prevBtn && nextBtn && cards.length > 1) {
-    const getScrollAmount = () => {
-      const viewportWidth = window.innerWidth;
-      return viewportWidth < 768 ? 336 : 384;
+  if (slider && cards.length > 1) {
+    let cachedScrollAmount = 0;
+
+    const updateCache = () => {
+      const card = cards[0] as HTMLElement;
+      const style = window.getComputedStyle(slider);
+      const gap = parseInt(style.gap) || 0;
+      cachedScrollAmount = card.offsetWidth + gap;
     };
 
-    prevBtn.addEventListener("click", () => {
-      slider.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
-    });
+    updateCache();
+    window.addEventListener("resize", updateCache, { passive: true });
 
-    nextBtn.addEventListener("click", () => {
-      slider.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
-    });
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        slider.scrollBy({ left: -cachedScrollAmount, behavior: "smooth" });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        slider.scrollBy({ left: cachedScrollAmount, behavior: "smooth" });
+      });
+    }
+
+    const updateDots = (activeIndex: number) => {
+      dots.forEach((dotWrapper, i) => {
+        const dot = dotWrapper.querySelector("div");
+        if (dot) {
+          if (i === activeIndex) {
+            dot.classList.remove("w-2", "bg-white/20");
+            dot.classList.add("w-8", "bg-brand-primary");
+            dotWrapper.setAttribute("aria-selected", "true");
+          } else {
+            dot.classList.remove("w-8", "bg-brand-primary");
+            dot.classList.add("w-2", "bg-white/20");
+            dotWrapper.setAttribute("aria-selected", "false");
+          }
+        }
+      });
+    };
 
     const observerOptions = {
       root: slider,
-      threshold: 0.5,
+      threshold: 0.6, // Higher threshold for more definitive active state
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+        if (entry.isIntersecting) {
           const index = Array.from(cards).indexOf(entry.target as Element);
-          if (index !== -1 && dots[index]) {
-            dots.forEach((dot, i) => {
-              if (i === index) {
-                dot.classList.remove("bg-white/20", "w-2");
-                dot.classList.add("bg-brand-primary", "w-8");
-              } else {
-                dot.classList.remove("bg-brand-primary", "w-8");
-                dot.classList.add("bg-white/20", "w-2");
-              }
-            });
+          if (index !== -1) {
+            updateDots(index);
           }
         }
       });
     }, observerOptions);
 
     cards.forEach((card) => observer.observe(card));
+
+    // Handle clicks on dots
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        slider.scrollTo({
+          left: i * cachedScrollAmount,
+          behavior: "smooth",
+        });
+      });
+    });
   }
 </script>

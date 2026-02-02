@@ -1,21 +1,21 @@
 ---
 import {
   Instagram,
-  Video,
   Youtube,
   Facebook,
   Linkedin,
   Github,
+  Music2,
 } from "lucide-react";
 import contactData from "../../data/contact.json";
 
 const IconMap: any = {
   Instagram,
-  Video,
   Youtube,
   Facebook,
   Linkedin,
   Github,
+  music2: Music2,
 };
 ---
 
@@ -25,27 +25,28 @@ const IconMap: any = {
       class="grid md:grid-cols-4 gap-12 border-t border-brand-primary/10 pt-16"
     >
       <div class="col-span-2" data-aos="fade-up">
-        <div class="text-2xl font-black text-white mb-6">
-          Rez<span class="text-brand-primary">Code</span>
+        <div
+          class="text-2xl font-black text-white mb-6 tracking-tighter uppercase"
+        >
+          Rez <span class="text-brand-primary">Code</span>
         </div>
-        <p class="text-brand-secondary max-w-sm mb-8">
+        <p class="text-brand-secondary max-w-sm mb-8 leading-relaxed">
           Forging digital realities with precision engineering and futuristic
           design. Jakarta, Indonesia.
         </p>
         <div class="text-sm text-brand-secondary/70">
-          © 2026 RezCode Agency. All rights reserved.
+          © 2026 RezCode. All rights reserved.
         </div>
       </div>
 
       <div data-aos="fade-up" data-aos-delay="100">
-        <h4 class="text-white font-bold mb-6">Sitemap</h4>
+        <h2 class="text-white font-bold mb-6">Sitemap</h2>
         <ul class="space-y-4 text-brand-secondary">
           {
             contactData.sitemap.map((item) => (
               <li>
                 <a
                   href={item.href}
-                  aria-label={`Go to ${item.label}`}
                   class="hover:text-brand-primary hover:translate-x-1 transition-all inline-block"
                 >
                   {item.label}
@@ -57,21 +58,33 @@ const IconMap: any = {
       </div>
 
       <div data-aos="fade-up" data-aos-delay="200">
-        <h4 class="text-white font-bold mb-6">Connect</h4>
-        <div class="grid grid-cols-4 gap-4">
+        <h2 class="text-white font-bold mb-6">Connect</h2>
+        <div class="flex flex-wrap gap-4">
           {
             contactData.socials.map((social) => {
               const Icon = IconMap[social.icon];
+              const displayName =
+                social.icon === "music2" ? "TikTok" : social.icon;
+
               return (
-                <a
-                  href={social.href}
-                  aria-label={`Follow us on ${social.icon}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="w-10 h-10 rounded-full bg-brand-dark border border-brand-primary/20 flex items-center justify-center text-brand-secondary hover:bg-brand-primary hover:text-white hover:scale-110 hover:-translate-y-1 transition-all"
-                >
-                  <Icon className="w-5 h-5" aria-hidden="true" />
-                </a>
+                <div class="group relative flex flex-col items-center">
+                  <span class="absolute -top-10 scale-0 group-hover:scale-100 group-hover:-translate-y-1 transition-all duration-300 bg-brand-primary text-white text-[10px] font-bold px-3 py-1.5 rounded-lg z-20 pointer-events-none uppercase tracking-widest after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-brand-primary">
+                    {displayName}
+                  </span>
+
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-secondary hover:bg-brand-primary hover:border-brand-primary hover:text-white transition-all duration-300 shadow-xl"
+                  >
+                    {Icon ? (
+                      <Icon className="w-5 h-5" />
+                    ) : (
+                      <span class="text-[10px]">{social.icon}</span>
+                    )}
+                  </a>
+                </div>
               );
             })
           }

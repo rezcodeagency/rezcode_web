@@ -8,6 +8,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import statsData from "../../data/stats.json";
+import projectsData from "../../data/projects.json";
 
 const IconMap: any = {
   Code2,
@@ -19,9 +20,8 @@ const IconMap: any = {
 };
 ---
 
-<section class="py-24 bg-brand-dark relative overflow-hidden">
-  <!-- Animated Grid Background -->
-  <div class="absolute inset-0 tech-grid opacity-20"></div>
+<section class="py-20 bg-brand-dark relative overflow-hidden">
+  <div class="absolute inset-0 tech-grid opacity-10"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="text-center mb-16">
@@ -29,11 +29,12 @@ const IconMap: any = {
         class="text-brand-secondary font-bold tracking-[0.3em] uppercase text-xs mb-4"
         data-aos="fade-up"
       >
-        Our Collaboration
+        Our Stats
       </h2>
       <div class="overflow-hidden">
         <h3
-          class="text-4xl md:text-6xl font-black text-white tracking-tighter animate-reveal-text"
+          class="text-4xl md:text-6xl font-black text-white tracking-tighter"
+          data-aos="fade-up"
         >
           Built on Trust
         </h3>
@@ -41,36 +42,36 @@ const IconMap: any = {
     </div>
 
     <div
-      class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16"
+      class="flex flex-wrap justify-center items-stretch gap-6 md:gap-8 lg:gap-12"
     >
       {
         statsData.map((stat, index) => {
           const Icon = IconMap[stat.icon];
+          const displayValue =
+            stat.label === "Projects Done" ? projectsData.length : stat.value;
+
           return (
             <div
               data-aos="fade-up"
               data-aos-delay={index * 150}
-              class="group relative w-full max-w-[400px] p-10 rounded-[2.5rem] bg-white/[0.03] backdrop-blur-3xl border border-white/10 hover:border-brand-primary/50 transition-all duration-500 hover:-translate-y-4 glow-card overflow-hidden"
+              class="group relative w-full sm:w-[calc(50%-1.5rem)] lg:w-[350px] p-8 md:p-10 rounded-[2.5rem] bg-white/[0.03] backdrop-blur-3xl border border-white/10 hover:border-brand-primary/50 transition-all duration-500 hover:-translate-y-3 glow-card"
             >
-              {/* Gradient Glow Background */}
-              <div
-                class={`absolute inset-0 bg-gradient-to-br from-brand-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`}
-              />
-
-              <div class="absolute -top-24 -right-24 w-48 h-48 bg-brand-primary/10 blur-[80px] rounded-full group-hover:bg-brand-primary/20 transition-all duration-700" />
+              {/* Blue Glow Effect */}
+              <div class="absolute -top-12 -right-12 w-32 h-32 bg-brand-primary/10 blur-[50px] rounded-full group-hover:bg-brand-primary/20 transition-all duration-700" />
 
               <div class="relative z-10 flex flex-col items-center text-center">
-                <div
-                  class={`w-20 h-20 rounded-3xl bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-brand-primary/20 shadow-lg shadow-brand-primary/10`}
-                >
-                  <Icon className="w-10 h-10" aria-hidden="true" />
+                <div class="w-16 h-16 md:w-20 md:h-20 rounded-3xl bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-6 md:mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-brand-primary/20 shadow-lg shadow-brand-primary/10">
+                  <Icon
+                    className="w-8 h-8 md:w-10 md:h-10"
+                    aria-hidden="true"
+                  />
                 </div>
 
                 <div class="text-5xl md:text-7xl font-black text-white mb-3 tracking-tighter group-hover:text-brand-primary transition-colors duration-500">
-                  {stat.value}
+                  {displayValue}
                 </div>
 
-                <div class="text-brand-secondary text-sm font-black uppercase tracking-[0.2em]">
+                <div class="text-brand-secondary text-xs font-black uppercase tracking-[0.2em]">
                   {stat.label}
                 </div>
               </div>
@@ -81,3 +82,12 @@ const IconMap: any = {
     </div>
   </div>
 </section>
+
+<style>
+  .tech-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+</style>

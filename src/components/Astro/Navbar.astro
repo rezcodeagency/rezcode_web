@@ -6,24 +6,37 @@ const navItems = siteData.navigation;
 const contactBtn = siteData.contactButton;
 
 const IconMap: any = {
-  Home, User, Zap, Layers, MessageCircle,
+  Home,
+  User,
+  Zap,
+  Layers,
+  MessageCircle,
 };
 
 const firstName = siteData.name.split("Code")[0];
 ---
 
-<header 
-  id="desktop-navbar" 
+<header
+  id="desktop-navbar"
   class="hidden md:block fixed top-0 left-0 w-full z-100 px-6 py-4 transition-transform duration-500 will-change-transform"
 >
-  <nav class="max-w-7xl mx-auto flex justify-between items-center bg-brand-dark/60 backdrop-blur-md border border-brand-primary/20 p-2 rounded-2xl shadow-2xl hover:border-brand-primary/40 transition-colors duration-500">
-    
-    <a href="#home" aria-label="FarellCode Home" class="flex items-center gap-2 px-4 group py-1">
-      <div class="font-mono text-xl font-bold flex items-center no-underline tracking-tight">
+  <nav
+    class="max-w-7xl mx-auto flex justify-between items-center bg-brand-dark/60 backdrop-blur-md border border-brand-primary/20 p-2 rounded-2xl shadow-2xl hover:border-brand-primary/40 transition-colors duration-500"
+  >
+    <a
+      href="#home"
+      aria-label="FarellCode Home"
+      class="flex items-center gap-2 px-4 group py-1"
+    >
+      <div
+        class="font-mono text-xl font-bold flex items-center no-underline tracking-tight"
+      >
         <span class="text-brand-primary">&lt;</span>
         <span class="text-white relative">
           {firstName}
-          <span class="absolute -right-[2px] bottom-1 w-[2px] h-[1.2em] bg-brand-primary animate-cursor-blink"></span>
+          <span
+            class="absolute -right-[2px] bottom-1 w-[2px] h-[1.2em] bg-brand-primary animate-cursor-blink"
+          ></span>
         </span>
         <span class="text-brand-secondary">.code</span>
         <span class="text-brand-primary">/&gt;</span>
@@ -31,29 +44,44 @@ const firstName = siteData.name.split("Code")[0];
     </a>
 
     <ul class="flex items-center gap-1 list-none">
-      {navItems.map((item) => {
-        const Icon = IconMap[item.icon];
-        return (
-          <li>
-            <a href={item.href} class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-brand-secondary hover:text-white hover:bg-white/5 transition-all group active:scale-95">
-              <Icon className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
-              <span>{item.name}</span>
-            </a>
-          </li>
-        );
-      })}
+      {
+        navItems.map((item) => {
+          const Icon = IconMap[item.icon];
+          return (
+            <li>
+              <a
+                href={item.href}
+                class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-brand-secondary hover:text-white hover:bg-white/5 transition-all group active:scale-95"
+              >
+                <Icon
+                  className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform"
+                  aria-hidden="true"
+                />
+                <span>{item.name}</span>
+              </a>
+            </li>
+          );
+        })
+      }
       <li class="w-px h-6 bg-white/10 mx-3" aria-hidden="true"></li>
       <li>
-        <a href={contactBtn.href} class="bg-brand-primary text-white text-sm font-black px-6 py-2.5 rounded-xl hover:bg-brand-secondary transition-all shadow-lg hover:shadow-brand-primary/30 active:scale-95">
-           {contactBtn.label}
+        <a
+          href={contactBtn.href}
+          class="bg-brand-primary text-white text-sm font-black px-6 py-2.5 rounded-xl hover:bg-brand-secondary transition-all shadow-lg hover:shadow-brand-primary/30 active:scale-95"
+        >
+          {contactBtn.label}
         </a>
       </li>
     </ul>
   </nav>
 </header>
 
-<div class="md:hidden fixed top-0 left-0 w-full z-100 px-4 py-6 pointer-events-none">
-  <div class="pointer-events-auto inline-flex items-center gap-1 px-4 py-2 bg-brand-dark/90 backdrop-blur-xl border border-brand-primary/30 rounded-xl shadow-2xl shadow-brand-primary/10">
+<div
+  class="md:hidden fixed top-0 left-0 w-full z-100 px-4 py-6 pointer-events-none"
+>
+  <div
+    class="pointer-events-auto inline-flex items-center gap-1 px-4 py-2 bg-brand-dark/90 backdrop-blur-xl border border-brand-primary/30 rounded-xl shadow-2xl shadow-brand-primary/10"
+  >
     <div class="font-mono text-base font-bold flex items-center">
       <span class="text-brand-primary">&lt;</span>
       <span class="text-white">{firstName}</span>
@@ -63,30 +91,40 @@ const firstName = siteData.name.split("Code")[0];
   </div>
 </div>
 
-<aside class="md:hidden fixed bottom-6 right-6 z-110 flex flex-col items-end gap-4">
-  <nav 
-    id="mobile-menu" 
+<aside
+  class="md:hidden fixed bottom-6 right-6 z-110 flex flex-col items-end gap-4"
+>
+  <nav
+    id="mobile-menu"
     class="hidden bg-brand-dark/98 backdrop-blur-2xl border border-brand-primary/20 rounded-3xl p-3 shadow-2xl min-w-[220px] animate-menu-pop overflow-hidden"
     aria-label="Mobile Navigation"
   >
     <div class="flex flex-col gap-1">
-      {navItems.map((item) => {
-        const Icon = IconMap[item.icon];
-        return (
-          <a href={item.href} class="mobile-nav-link flex items-center justify-between p-4 rounded-2xl text-brand-secondary hover:text-white hover:bg-brand-primary/10 transition-all">
-            <span class="font-bold">{item.name}</span>
-            <Icon className="w-5 h-5 text-brand-primary" />
-          </a>
-        );
-      })}
-      <a href={contactBtn.href} class="mt-2 flex justify-center items-center p-4 bg-brand-primary text-white font-black rounded-2xl">
+      {
+        navItems.map((item) => {
+          const Icon = IconMap[item.icon];
+          return (
+            <a
+              href={item.href}
+              class="mobile-nav-link flex items-center justify-between p-4 rounded-2xl text-brand-secondary hover:text-white hover:bg-white/5 transition-all"
+            >
+              <span class="font-bold">{item.name}</span>
+              <Icon className="w-5 h-5 text-brand-primary" aria-hidden="true" />
+            </a>
+          );
+        })
+      }
+      <a
+        href={contactBtn.href}
+        class="mt-2 flex justify-center items-center p-4 bg-brand-primary text-white font-black rounded-2xl"
+      >
         {contactBtn.label}
       </a>
     </div>
   </nav>
 
-  <button 
-    id="navbar-toggle" 
+  <button
+    id="navbar-toggle"
     aria-label="Toggle Menu"
     class="w-16 h-16 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-2xl shadow-brand-primary/40 active:scale-90 transition-transform"
   >
@@ -119,7 +157,11 @@ const firstName = siteData.name.split("Code")[0];
   });
 
   document.addEventListener("click", (e) => {
-    if (mobileMenu && !mobileMenu.classList.contains("hidden") && !mobileMenu.contains(e.target as Node)) {
+    if (
+      mobileMenu &&
+      !mobileMenu.classList.contains("hidden") &&
+      !mobileMenu.contains(e.target as Node)
+    ) {
       mobileMenu.classList.add("hidden");
       iconMenu?.classList.remove("hidden");
       iconClose?.classList.add("hidden");
@@ -127,22 +169,32 @@ const firstName = siteData.name.split("Code")[0];
   });
 
   let lastScroll = 0;
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.scrollY;
-    if (desktopHeader) {
-      if (currentScroll > 50) {
-        desktopHeader.firstElementChild?.classList.add("py-1", "bg-brand-dark/90");
-      } else {
-        desktopHeader.firstElementChild?.classList.remove("py-1", "bg-brand-dark/90");
+  window.addEventListener(
+    "scroll",
+    () => {
+      const currentScroll = window.scrollY;
+      if (desktopHeader) {
+        if (currentScroll > 50) {
+          desktopHeader.firstElementChild?.classList.add(
+            "py-1",
+            "bg-brand-dark/90",
+          );
+        } else {
+          desktopHeader.firstElementChild?.classList.remove(
+            "py-1",
+            "bg-brand-dark/90",
+          );
+        }
+        if (currentScroll > lastScroll && currentScroll > 200) {
+          desktopHeader.style.transform = "translateY(-110%)";
+        } else {
+          desktopHeader.style.transform = "translateY(0)";
+        }
       }
-      if (currentScroll > lastScroll && currentScroll > 200) {
-        desktopHeader.style.transform = "translateY(-110%)";
-      } else {
-        desktopHeader.style.transform = "translateY(0)";
-      }
-    }
-    lastScroll = currentScroll;
-  }, { passive: true });
+      lastScroll = currentScroll;
+    },
+    { passive: true },
+  );
 </script>
 
 <style>
@@ -153,8 +205,13 @@ const firstName = siteData.name.split("Code")[0];
 
   /* Animasi Kursor Berkedip (Typing Style) */
   @keyframes cursor-blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
   }
   .animate-cursor-blink {
     animation: cursor-blink 1s step-end infinite;
@@ -162,8 +219,14 @@ const firstName = siteData.name.split("Code")[0];
 
   /* Menu Pop In */
   @keyframes menu-pop {
-    0% { transform: scale(0.95) translateY(10px); opacity: 0; }
-    100% { transform: scale(1) translateY(0); opacity: 1; }
+    0% {
+      transform: scale(0.95) translateY(10px);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
   }
   .animate-menu-pop {
     animation: menu-pop 0.3s ease-out forwards;

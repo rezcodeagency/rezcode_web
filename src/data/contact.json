@@ -19,14 +19,14 @@
     { "label": "Home", "href": "#home" },
     { "label": "About", "href": "#about" },
     { "label": "Services", "href": "#services" },
-    { "label": "Showcase", "href": "#showcase" }
+    { "label": "Projects", "href": "#project" }
   ],
   "socials": [
     {"icon": "Instagram", "href": "https://www.instagram.com/rezcodeagency/"},
-    {"icon": "Video", "href": "#"},
-    {"icon": "Youtube", "href": "#"},
-    {"icon": "Facebook", "href": "#"},
-    {"icon": "Linkedin", "href": "#"},
-    {"icon": "Github", "href": "#"}
+    {"icon": "Tiktok", "href": "https://www.tiktok.com/@rez.code"},
+    {"icon": "Youtube", "href": "https://www.youtube.com/@RezCodeid"},
+    {"icon": "Facebook", "href": "https://www.facebook.com/profile.php?id=61587564562099"},
+    {"icon": "Linkedin", "href": "https://www.linkedin.com/in/rezcode-agency-5a404b3aa/"},
+    {"icon": "Github", "href": "https://github.com/rezcodeagency"}
   ]
 }

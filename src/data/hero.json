@@ -2,7 +2,7 @@
   "buttons": [
     {
       "label": "View Our Work",
-      "href": "#showcase",
+      "href": "#project",
       "primary": true,
       "icon": "ArrowRight"
     },
