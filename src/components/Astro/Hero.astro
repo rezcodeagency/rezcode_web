@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logoImage from "../../assets/logo.png"; // Assuming it exists in assets, fallback to src if needed
+import logoImage from "../../assets/logo.png";
 import {
   Layers,
   Zap,
@@ -31,7 +31,6 @@ const IconMap: any = {
   id="home"
   class="h-screen flex items-center justify-center relative overflow-hidden bg-brand-dark"
 >
-  <!-- Single Logo Background - Center -->
   <div
     class="absolute inset-0 flex items-center justify-center opacity-[0.04] pointer-events-none"
   >
@@ -44,37 +43,37 @@ const IconMap: any = {
       width={400}
       height={400}
       format="webp"
-      class="w-[400px] h-[400px] object-contain"
+      class="w-[300px] h-[300px] md:w-[400px] md:h-[400px] object-contain"
     />
   </div>
 
-  <!-- Animated Background Layer -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
-    <!-- Gradient Orbs -->
     <div
-      class="absolute top-1/4 -left-48 w-96 h-96 bg-brand-primary/30 rounded-full blur-3xl animate-float"
+      class="absolute top-1/4 -left-48 w-96 h-96 bg-brand-primary/20 rounded-full blur-3xl"
     >
     </div>
     <div
-      class="absolute bottom-1/4 -right-48 w-96 h-96 bg-brand-secondary/20 rounded-full blur-3xl animate-float-delayed"
+      class="absolute bottom-1/4 -right-48 w-96 h-96 bg-brand-secondary/10 rounded-full blur-3xl"
     >
     </div>
 
-    <!-- Grid Pattern -->
     <div
-      class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px]"
+      class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px] md:bg-[size:100px_100px]"
     >
     </div>
   </div>
 
-  <!-- Floating Tech Icons Layer -->
   <div class="absolute inset-0 pointer-events-none z-0">
     {
-      heroData.floatingIcons.map((item) => {
+      heroData.floatingIcons.map((item, index) => {
         const Icon = IconMap[item.icon];
+        // Hanya 2 ikon pertama yang muncul di mobile (index 0 & 1)
+        // Selebihnya hanya muncul di desktop (md:block)
+        const visibilityClass = index < 2 ? "block" : "hidden md:block";
+
         return (
           <div
-            class={`absolute ${item.position} ${item.color} animate-float`}
+            class={`absolute ${item.position} ${item.color} animate-float ${visibilityClass}`}
             style={`animation-delay: ${item.delay};`}
             aria-hidden="true"
           >
@@ -85,56 +84,44 @@ const IconMap: any = {
     }
   </div>
 
-  <!-- Content -->
   <div
-    class="relative z-10 text-center px-4 md:px-6 max-w-6xl mx-auto pt-20 md:pt-0"
+    class="relative z-10 text-center px-4 md:px-6 max-w-6xl mx-auto pt-10 md:pt-0"
   >
     <div
-      data-aos="fade-down"
-      class="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 text-brand-secondary text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 md:mb-8"
+      class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 text-brand-secondary text-[10px] md:text-xs font-bold uppercase tracking-widest mb-8"
     >
       <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
       Resolution For your Brand Website
     </div>
 
     <h1
-      class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 leading-tight overflow-hidden"
+      class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight"
     >
+      <span class="text-white inline-block"> Welcome to </span><br />
       <span
-        class="text-white inline-block animate-slide-reveal-up"
-        style="animation-delay: 0.2s;"
-      >
-        Welcome to
-      </span><br />
-      <span
-        class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-cyan-400 to-brand-secondary animate-gradient inline-block animate-reveal-text"
-        style="animation-delay: 0.6s;"
+        class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-cyan-400 to-brand-secondary animate-gradient inline-block"
       >
         RezCode
       </span>
     </h1>
 
     <p
-      class="text-base md:text-lg lg:text-xl text-brand-light/80 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4 opacity-0 animate-slide-reveal-up"
-      style="animation-delay: 1s;"
+      class="text-base md:text-xl text-brand-light/80 mb-12 max-w-3xl mx-auto leading-relaxed px-4"
     >
       We provide web solutions that are fast, secure, and infinitely scalable.
       Beyond code, we build digital experiences that define your brand's future.
     </p>
 
-    <div
-      class="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-slide-reveal-up"
-      style="animation-delay: 1.4s;"
-    >
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
       {
         heroData.buttons.map((btn) => {
           const Icon = btn.icon ? IconMap[btn.icon] : null;
           return (
             <a
               href={btn.href}
-              class={`group px-8 py-4 rounded-full font-bold transition-all duration-300 flex items-center gap-2 hover:gap-3 hover:scale-105 ${
+              class={`group px-8 py-4 rounded-full font-bold transition-all duration-300 flex items-center gap-2 hover:scale-105 ${
                 btn.primary
-                  ? "bg-brand-primary text-white hover:bg-brand-primary/90 animate-glow-pulse"
+                  ? "bg-brand-primary text-white hover:bg-brand-primary/90 shadow-[0_0_20px_rgba(59,101,164,0.4)]"
                   : "border-2 border-brand-primary/50 text-brand-primary hover:bg-brand-primary/10"
               }`}
             >
