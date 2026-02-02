@@ -1,0 +1,228 @@
+---
+import siteData from "../../data/site.json";
+import { Home, User, Zap, Layers, MessageCircle, Menu, X } from "lucide-react";
+
+// In Astro components, we can import components from React libraries,
+// but we'll render them as static markup if we don't use client:load.
+// However, it's safer to use local SVG or lucide-astro for a pure Astro nav.
+// For now, I'll use the components but handle the logic in vanilla JS.
+
+const navItems = siteData.navigation;
+const contactBtn = siteData.contactButton;
+
+const IconMap: any = {
+  Home,
+  User,
+  Zap,
+  Layers,
+  MessageCircle,
+};
+---
+
+<nav
+  id="main-navbar"
+  class="fixed top-0 left-0 w-full z-[100] px-4 md:px-6 pointer-events-none transition-all duration-500 ease-in-out py-4"
+>
+  <div
+    class="max-w-7xl mx-auto flex justify-between items-center pointer-events-auto"
+  >
+    <!-- Logo -->
+    <a
+      href="#home"
+      class="bg-brand-dark/80 backdrop-blur-xl border border-brand-primary/20 px-6 py-3 rounded-2xl shadow-lg shadow-brand-primary/5 hover:border-brand-primary/40 transition-all group overflow-hidden relative block"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+      >
+      </div>
+      <div
+        class="text-2xl font-black tracking-tighter text-white group-hover:scale-105 transition-transform flex items-center gap-2"
+      >
+        <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"
+        ></span>
+        {siteData.name.split("Code")[0]}<span class="text-brand-primary"
+          >Code</span
+        >
+      </div>
+    </a>
+
+    <!-- Desktop Menu -->
+    <div
+      class="hidden md:flex items-center gap-2 bg-brand-dark/70 backdrop-blur-xl border border-brand-primary/10 px-2 py-2 rounded-2xl shadow-2xl"
+    >
+      <div class="flex items-center">
+        {
+          navItems.map((item) => {
+            const Icon = IconMap[item.icon];
+            return (
+              <a
+                href={item.href}
+                aria-label={`Navigate to ${item.name}`}
+                class="nav-link flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-brand-secondary hover:text-white hover:bg-white/5 transition-all group relative overflow-hidden active:scale-95"
+              >
+                <Icon className="w-4 h-4 group-hover:text-brand-primary group-hover:scale-110 transition-all" />
+                <span class="relative z-10">{item.name}</span>
+                <div class="absolute inset-x-0 bottom-0 h-0.5 bg-brand-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+              </a>
+            );
+          })
+        }
+      </div>
+      <div class="w-px h-6 bg-white/10 mx-2"></div>
+      <a
+        href={contactBtn.href}
+        aria-label={contactBtn.label}
+        class="group flex items-center gap-2 bg-brand-primary text-white text-sm font-bold px-6 py-3 rounded-xl hover:bg-brand-secondary transition-all shadow-lg shadow-brand-primary/25 hover:shadow-brand-secondary/40 hover:-translate-y-0.5 animate-glow-pulse"
+      >
+        <span>{contactBtn.label}</span>
+        {
+          (() => {
+            const Icon = IconMap[contactBtn.icon];
+            return (
+              <Icon className="w-4 h-4 group-hover:rotate-12 group-hover:scale-110 transition-transform" />
+            );
+          })()
+        }
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Content -->
+<div
+  id="mobile-menu"
+  class="md:hidden fixed inset-0 z-[90] bg-brand-dark/95 backdrop-blur-2xl opacity-0 pointer-events-none transition-all duration-500"
+>
+  <div class="flex flex-col items-center justify-center h-full gap-8 p-6">
+    {
+      navItems.map((item, idx) => {
+        const Icon = IconMap[item.icon];
+        return (
+          <a
+            href={item.href}
+            class="mobile-nav-link flex items-center gap-4 text-3xl font-black text-white hover:text-brand-primary transition-all translate-y-10 opacity-0"
+            style={`transition-delay: ${idx * 100}ms`}
+          >
+            <Icon className="w-8 h-8 text-brand-primary" />
+            {item.name}
+          </a>
+        );
+      })
+    }
+    <a
+      href={contactBtn.href}
+      class="mobile-nav-link flex items-center gap-4 px-8 py-5 bg-brand-primary text-white text-2xl font-bold rounded-2xl shadow-2xl shadow-brand-primary/40 translate-y-10 opacity-0"
+      style={`transition-delay: ${navItems.length * 100}ms`}
+    >
+      {contactBtn.label}
+      {
+        (() => {
+          const Icon = IconMap[contactBtn.icon];
+          return <Icon className="w-6 h-6" />;
+        })()
+      }
+    </a>
+  </div>
+</div>
+
+<!-- Mobile Toggle Button -->
+<button
+  id="navbar-toggle"
+  aria-label="Toggle menu"
+  class="md:hidden fixed bottom-6 right-6 z-[110] w-16 h-16 rounded-full bg-brand-primary text-white shadow-2xl shadow-brand-primary/40 flex items-center justify-center active:scale-90 transition-all group overflow-hidden"
+>
+  <div
+    class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 rounded-full"
+  >
+  </div>
+  <Menu
+    id="icon-menu"
+    class="w-8 h-8 relative z-10 transition-all duration-500"
+  />
+  <X
+    id="icon-close"
+    class="w-8 h-8 absolute z-10 opacity-0 scale-0 transition-all duration-500"
+  />
+</button>
+
+<script>
+  const navbar = document.getElementById("main-navbar");
+  const toggleBtn = document.getElementById("navbar-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const iconMenu = document.getElementById("icon-menu");
+  const iconClose = document.getElementById("icon-close");
+  const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");
+
+  let isOpen = false;
+
+  // Toggle Function
+  const toggleMenu = () => {
+    isOpen = !isOpen;
+
+    if (isOpen) {
+      mobileMenu?.classList.remove("opacity-0", "pointer-events-none");
+      mobileMenu?.classList.add("opacity-100", "pointer-events-auto");
+      iconMenu?.classList.add("opacity-0", "scale-0", "rotate-90");
+      iconClose?.classList.remove("opacity-0", "scale-0");
+      iconClose?.classList.add("opacity-100", "scale-100");
+      document.body.style.overflow = "hidden";
+
+      // Animate mobile links
+      document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+        link.classList.remove("translate-y-10", "opacity-0");
+        link.classList.add("translate-y-0", "opacity-100");
+      });
+    } else {
+      mobileMenu?.classList.add("opacity-0", "pointer-events-none");
+      mobileMenu?.classList.remove("opacity-100", "pointer-events-auto");
+      iconMenu?.classList.remove("opacity-0", "scale-0", "rotate-90");
+      iconClose?.classList.add("opacity-0", "scale-0");
+      iconClose?.classList.remove("opacity-100", "scale-100");
+      document.body.style.overflow = "";
+
+      // Reset mobile links
+      document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+        link.classList.add("translate-y-10", "opacity-0");
+        link.classList.remove("translate-y-0", "opacity-100");
+      });
+    }
+  };
+
+  toggleBtn?.addEventListener("click", toggleMenu);
+
+  // Close on link click
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (isOpen) toggleMenu();
+    });
+  });
+
+  // Scroll effect
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+      navbar?.classList.remove("py-4");
+      navbar?.classList.add("py-2");
+    } else {
+      navbar?.classList.remove("py-2");
+      navbar?.classList.add("py-4");
+    }
+  });
+</script>
+
+<style>
+  /* Custom animations if needed */
+  .animate-glow-pulse {
+    animation: glow-pulse 2s infinite;
+  }
+  @keyframes glow-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(80, 122, 189, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 15px rgba(80, 122, 189, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(80, 122, 189, 0);
+    }
+  }
+</style>

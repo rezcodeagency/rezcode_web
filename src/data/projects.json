@@ -3,7 +3,7 @@
     "id": 1,
     "title": "User Portofolio",
     "client": "Farell Rhezky Alvianto",
-    "description": "Static Portofolio, Simple, Elegant, Responsive",
+    "description": "Static Portfolio, Simple, Elegant, Responsive",
     "tech": ["React", "Tailwind"],
     "link": "#",
     "image": "/projectpict/Farell.png",

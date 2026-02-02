@@ -1,77 +1,184 @@
 ---
-import { Monitor, Smartphone, Cpu, ArrowRight } from "lucide-react";
+import {
+  Palette,
+  Code2,
+  Database,
+  Layout,
+  Search,
+  PenTool,
+  Share2,
+  BarChart3,
+  Settings,
+  Users,
+  ClipboardList,
+  MessageSquare,
+  ArrowRight,
+} from "lucide-react";
 import servicesData from "../../data/services.json";
 
 const IconMap: any = {
-  Monitor,
-  Smartphone,
-  Cpu,
+  Palette,
+  Code2,
+  Database,
+  Layout,
+  Search,
+  PenTool,
+  Share2,
+  BarChart3,
+  Settings,
+  Users,
+  ClipboardList,
 };
 ---
 
 <section
   id="services"
-  class="py-24 px-6 relative z-10 border-t border-brand-primary/5"
+  class="py-32 px-6 relative z-10 border-t border-brand-primary/5 bg-[#03050a]"
 >
   <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16">
+    <div class="text-center mb-20">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-primary/30 bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-widest mb-6"
+        data-aos="fade-up"
+      >
+        <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"
+        ></span>
+        Our Services
+      </div>
       <div class="overflow-hidden">
         <h2
-          class="text-4xl md:text-5xl font-bold mb-4 text-white animate-reveal-text"
+          class="text-4xl md:text-6xl font-black mb-6 text-white tracking-tight"
+          data-aos="fade-up"
         >
-          The RezCode Ecosystem
+          Scale Your <span class="text-brand-primary">Digital</span> Presence
         </h2>
       </div>
       <p
-        class="text-brand-secondary max-w-2xl mx-auto text-lg"
+        class="text-brand-secondary max-w-2xl mx-auto text-lg mb-10"
         data-aos="fade-up"
-        data-aos-delay="200"
+        data-aos-delay="100"
       >
-        Premium digital engineering services that elevate your brand beyond
-        industry standards.
+        Comprehensive solutions from design to maintenance to power your
+        business growth.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8">
-      {
-        servicesData.map((service) => {
-          const Icon = IconMap[service.icon];
-          return (
-            <a
-              href="#contact"
-              data-aos="fade-up"
-              data-aos-delay={service.delay}
-              class="block glow-card group p-8 rounded-3xl bg-brand-dark/50 backdrop-blur-sm border border-brand-primary/10 hover:border-brand-primary/50 transition-all cursor-pointer relative overflow-hidden flex flex-col h-full hover:-translate-y-2"
-            >
-              <div class="absolute inset-0 bg-brand-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+    <!-- Services Slider -->
+    <div class="relative px-0 md:px-4">
+      <div
+        id="services-slider"
+        class="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-12 scroll-smooth px-4 -mx-4 md:px-0 md:mx-0"
+      >
+        {
+          servicesData.map((service: any, index: number) => {
+            const Icon = IconMap[service.icon];
+            return (
               <div
-                class={`w-14 h-14 rounded-2xl bg-${service.color}/20 flex items-center justify-center text-${service.color} mb-6 group-hover:scale-110 transition-transform relative z-10 shadow-lg shadow-${service.color}/20`}
+                class="w-[300px] md:w-[380px] flex-shrink-0 snap-center glow-card group p-8 rounded-[2rem] bg-brand-dark/40 backdrop-blur-md border border-white/5 hover:border-brand-primary/30 transition-all flex flex-col h-full relative overflow-hidden"
+                data-aos="fade-up"
+                data-aos-delay={index * 50}
               >
-                <Icon className="w-7 h-7" />
-              </div>
-              <h3 class="text-xl font-bold text-white mb-3 relative z-10 group-hover:text-brand-primary transition-colors">
-                {service.title}
-              </h3>
-              <p class="text-brand-secondary leading-relaxed mb-6 relative z-10">
-                {service.description}
-              </p>
+                <div class="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-              <ul class="space-y-2 mb-6 relative z-10">
-                {service.features.map((feature) => (
-                  <li class="flex items-center gap-2 text-sm text-brand-light/70">
-                    <div class="w-1.5 h-1.5 rounded-full bg-brand-primary" />{" "}
-                    {feature}
-                  </li>
-                ))}
-              </ul>
+                <div class="flex items-center justify-between mb-6">
+                  <div
+                    class={`w-12 h-12 rounded-xl bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center text-brand-primary group-hover:scale-110 transition-all duration-500`}
+                  >
+                    <Icon className="w-6 h-6" aria-hidden="true" />
+                  </div>
+                  <span
+                    class={`text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-md bg-${service.color}/10 text-${service.color} border border-${service.color}/20`}
+                  >
+                    {service.category}
+                  </span>
+                </div>
+                <h3 class="text-xl font-black text-white mb-3 group-hover:text-brand-primary transition-colors">
+                  {service.title}
+                </h3>
+                <p class="text-brand-secondary/80 text-sm leading-relaxed mb-6 h-20 line-clamp-3">
+                  {service.description}
+                </p>
 
-              <div class="mt-auto flex items-center gap-2 text-brand-primary font-bold text-sm uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
-                Start Project <ArrowRight className="w-4 h-4" />
+                <a
+                  href="#contact"
+                  aria-label={`Inquire about ${service.title}`}
+                  class="mt-auto inline-flex items-center gap-2 text-brand-primary font-bold text-[10px] uppercase tracking-widest hover:gap-3 transition-all group/btn"
+                >
+                  Inquire Now{" "}
+                  <MessageSquare className="w-3.5 h-3.5" aria-hidden="true" />
+                </a>
               </div>
-            </a>
-          );
-        })
-      }
+            );
+          })
+        }
+
+        <!-- Specialized CTA Card -->
+        <div
+          data-aos="fade-up"
+          data-aos-delay="600"
+          class="w-[300px] md:w-[380px] flex-shrink-0 snap-center p-8 rounded-[2rem] bg-brand-primary border border-brand-primary flex flex-col justify-center items-center text-center group cursor-pointer hover:scale-[1.02] transition-all shadow-2xl shadow-brand-primary/20"
+        >
+          <div
+            class="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-all"
+          >
+            <ArrowRight className="w-8 h-8" aria-hidden="true" />
+          </div>
+          <h3 class="text-2xl font-black text-white mb-2">Have Other Needs?</h3>
+          <p class="text-white/80 text-sm mb-6">
+            We're ready to build your digital vision.
+          </p>
+          <a
+            href="#contact"
+            class="px-6 py-3 bg-white text-brand-primary rounded-full font-black text-xs uppercase tracking-widest hover:bg-brand-dark hover:text-white transition-all shadow-xl"
+          >
+            Contact Us
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  function setupAutoSlider() {
+    const slider = document.getElementById("services-slider");
+    if (!slider) return;
+
+    let isPaused = false;
+    const scrollStep = 1;
+    const scrollInterval = 40; // Adjust for speed
+
+    const autoScroll = () => {
+      if (!isPaused) {
+        slider.scrollLeft += scrollStep;
+
+        // Loop back if reached the end
+        if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 1) {
+          slider.scrollLeft = 0;
+        }
+      }
+    };
+
+    setInterval(autoScroll, scrollInterval);
+
+    slider.addEventListener("mouseenter", () => (isPaused = true));
+    slider.addEventListener("mouseleave", () => (isPaused = false));
+
+    // Support manual interaction
+    slider.addEventListener("touchstart", () => (isPaused = true));
+    slider.addEventListener("touchend", () => (isPaused = false));
+  }
+
+  // Initialize on load
+  setupAutoSlider();
+</script>

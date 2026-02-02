@@ -35,16 +35,24 @@ import projects from "../../data/projects.json";
           <>
             <button
               id="project-prev"
+              aria-label="Previous project"
               class="hidden xl:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-20 w-14 h-14 items-center justify-center rounded-2xl bg-white/5 backdrop-blur-2xl border border-white/10 hover:bg-brand-primary hover:border-brand-primary hover:scale-110 transition-all duration-500 text-white group shadow-2xl shadow-black/50"
             >
-              <ChevronLeft className="w-7 h-7 group-hover:animate-pulse" />
+              <ChevronLeft
+                className="w-7 h-7 group-hover:animate-pulse"
+                aria-hidden="true"
+              />
             </button>
 
             <button
               id="project-next"
+              aria-label="Next project"
               class="hidden xl:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-20 w-14 h-14 items-center justify-center rounded-2xl bg-white/5 backdrop-blur-2xl border border-white/10 hover:bg-brand-primary hover:border-brand-primary hover:scale-110 transition-all duration-500 text-white group shadow-2xl shadow-black/50"
             >
-              <ChevronRight className="w-7 h-7 group-hover:animate-pulse" />
+              <ChevronRight
+                className="w-7 h-7 group-hover:animate-pulse"
+                aria-hidden="true"
+              />
             </button>
           </>
         )
@@ -68,18 +76,22 @@ import projects from "../../data/projects.json";
                 {project.image ? (
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={`Screenshot of ${project.title}`}
+                    loading="lazy"
                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 grayscale-[20%] group-hover:grayscale-0"
                   />
                 ) : (
-                  <div class="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-1000">
+                  <div
+                    class="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-1000"
+                    aria-hidden="true"
+                  >
                     <div class="text-brand-primary/40 text-7xl md:text-8xl">
                       {project.icon}
                     </div>
                   </div>
                 )}
 
-                <div class="absolute inset-0 bg-brand-dark/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 backdrop-blur-[2px]"></div>
+                <div class="absolute inset-0 bg-brand-dark/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 backdrop-blur-[2px]" />
 
                 {project.featured && (
                   <div class="absolute top-5 right-5 z-10">
@@ -109,8 +121,7 @@ import projects from "../../data/projects.json";
                   ))}
                 </div>
 
-                <div class="flex items-center justify-between gap-4">                  
-
+                <div class="flex items-center justify-between gap-4">
                   {project.link && (
                     <a
                       href={project.link}
@@ -132,11 +143,18 @@ import projects from "../../data/projects.json";
     <!-- Pagination Dots -->
     {
       projects.length > 1 && (
-        <div id="project-dots" class="flex justify-center gap-2 mt-8">
+        <div
+          id="project-dots"
+          class="flex justify-center gap-2 mt-8"
+          role="tablist"
+        >
           {projects.map((_, i) => (
             <div
+              role="tab"
+              aria-label={`Go to project ${i + 1}`}
+              aria-selected={i === 0 ? "true" : "false"}
               class={`h-2 rounded-full transition-all duration-300 cursor-pointer ${i === 0 ? "w-8 bg-brand-primary" : "w-2 bg-white/20 hover:bg-white/40"}`}
-            ></div>
+            />
           ))}
         </div>
       )

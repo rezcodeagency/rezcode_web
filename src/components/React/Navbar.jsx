@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Home, User, Zap, Layers, MessageCircle, Menu, X } from 'lucide-react';
 import siteData from '../../data/site.json';
 
@@ -26,9 +26,9 @@ export default function Navbar() {
       // Only toggle visibility if NOT scrolling due to a click
       if (!isClickScrolling) {
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          setIsVisible(false); // Hide on Scroll Down
+          // setIsVisible(false); // Commenting out to keep navbar always visible or better controlled
         } else {
-          setIsVisible(true); // Show on Scroll Up
+          setIsVisible(true);
         }
       }
 
@@ -65,7 +65,7 @@ export default function Navbar() {
     <>
       {/* Desktop & Top Mobile Bar */}
       <nav 
-        className={`fixed top-0 left-0 w-full z-50 px-4 md:px-6 pointer-events-none transition-all duration-500 ease-in-out transform ${
+        className={`fixed top-0 left-0 w-full z-[100] px-4 md:px-6 pointer-events-none transition-all duration-500 ease-in-out transform ${
           isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
         } ${scrolled ? 'py-2' : 'py-4'}`}
       >
@@ -85,9 +85,10 @@ export default function Navbar() {
                   key={item.name} 
                   href={item.href} 
                   onClick={handleLinkClick}
+                  aria-label={`Navigate to ${item.name}`}
                   className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-brand-secondary hover:text-white hover:bg-white/5 transition-all group relative overflow-hidden active:scale-95"
                 >
-                  <item.icon className="w-4 h-4 group-hover:text-brand-primary group-hover:scale-110 transition-all" />
+                  <item.icon className="w-4 h-4 group-hover:text-brand-primary group-hover:scale-110 transition-all" aria-hidden="true" />
                   <span className="relative z-10">{item.name}</span>
                   <div className="absolute inset-x-0 bottom-0 h-0.5 bg-brand-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
                 </a>
@@ -97,10 +98,11 @@ export default function Navbar() {
             <a 
               href={contactBtn.href} 
               onClick={handleLinkClick}
+              aria-label={contactBtn.label}
               className="group flex items-center gap-2 bg-brand-primary text-white text-sm font-bold px-6 py-3 rounded-xl hover:bg-brand-secondary transition-all shadow-lg shadow-brand-primary/25 hover:shadow-brand-secondary/40 hover:-translate-y-0.5 animate-glow-pulse"
             >
               <span>{contactBtn.label}</span>
-              <contactBtn.icon className="w-4 h-4 group-hover:rotate-12 group-hover:scale-110 transition-transform" />
+              <contactBtn.icon className="w-4 h-4 group-hover:rotate-12 group-hover:scale-110 transition-transform" aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -118,6 +120,7 @@ export default function Navbar() {
                   key={item.name || item.label}
                   href={item.href}
                   onClick={handleLinkClick}
+                  aria-label={item.name || item.label}
                   className={`flex items-center gap-3 px-6 py-4 rounded-2xl backdrop-blur-xl border shadow-xl font-bold transition-all hover:scale-105 active:scale-95 animate-slide-reveal-up ${
                     item.primary 
                       ? 'bg-brand-primary text-white border-brand-primary/50' 
@@ -126,7 +129,7 @@ export default function Navbar() {
                   style={{ animationDelay: `${idx * 100}ms` }}
                 >
                   <span className="text-base">{item.name || item.label}</span>
-                  <item.icon className={`w-5 h-5 ${item.primary ? 'text-white' : 'text-brand-primary'}`} />
+                  <item.icon className={`w-5 h-5 ${item.primary ? 'text-white' : 'text-brand-primary'}`} aria-hidden="true" />
                 </a>
              ))}
           </div>
@@ -134,13 +137,15 @@ export default function Navbar() {
 
         <button 
           onClick={() => setIsOpen(!isOpen)} 
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
           className={`w-16 h-16 rounded-full bg-brand-primary text-white shadow-2xl shadow-brand-primary/40 flex items-center justify-center transition-all active:scale-90 z-50 relative overflow-hidden group ${isOpen ? 'rotate-90' : 'hover:scale-110'}`}
         >
           <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 rounded-full"></div>
           {isOpen ? (
-            <X className="w-8 h-8 relative z-10" />
+            <X className="w-8 h-8 relative z-10" aria-hidden="true" />
           ) : (
-            <Menu className="w-8 h-8 relative z-10" />
+            <Menu className="w-8 h-8 relative z-10" aria-hidden="true" />
           )}
         </button>
       </div>

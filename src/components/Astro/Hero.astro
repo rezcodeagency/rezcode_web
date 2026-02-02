@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import logoImage from "../../assets/logo.png"; // Assuming it exists in assets, fallback to src if needed
 import {
   Layers,
   Zap,
@@ -33,9 +35,13 @@ const IconMap: any = {
   <div
     class="absolute inset-0 flex items-center justify-center opacity-[0.04] pointer-events-none"
   >
-    <img
-      src="/logo.png"
-      alt="RezCode"
+    <Image
+      src={logoImage}
+      alt=""
+      aria-hidden="true"
+      loading="eager"
+      width={600}
+      height={600}
       class="w-[600px] h-[600px] object-contain"
     />
   </div>
@@ -68,6 +74,7 @@ const IconMap: any = {
           <div
             class={`absolute ${item.position} ${item.color} animate-float`}
             style={`animation-delay: ${item.delay};`}
+            aria-hidden="true"
           >
             <Icon className={item.size} />
           </div>
@@ -85,7 +92,7 @@ const IconMap: any = {
       class="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 text-brand-secondary text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 md:mb-8"
     >
       <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
-      Premium Digital Solutions
+      Digital Resolution Engineering
     </div>
 
     <h1
@@ -109,8 +116,9 @@ const IconMap: any = {
       class="text-base md:text-lg lg:text-xl text-brand-light/80 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4 opacity-0 animate-slide-reveal-up"
       style="animation-delay: 1s;"
     >
-      We engineer web solutions that are fast, secure, and infinitely scalable.
-      Beyond code, we build digital experiences that define your brand's future.
+      We are provide a web solutions that are fast, secure, and infinitely
+      scalable. Beyond code, we build digital experiences that define your
+      brand's future.
     </p>
 
     <div

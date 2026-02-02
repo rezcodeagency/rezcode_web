@@ -78,7 +78,7 @@ const IconMap: any = {
                 <div
                   class={`w-10 h-10 rounded-xl ${category.bgColor} flex items-center justify-center ${category.color} group-hover:scale-110 transition-transform`}
                 >
-                  <CategoryIcon className="w-5 h-5" />
+                  <CategoryIcon className="w-5 h-5" aria-hidden="true" />
                 </div>
                 <h4 class="text-xl font-bold text-white">
                   {category.category}
@@ -95,7 +95,7 @@ const IconMap: any = {
                       <div
                         class={`w-12 h-12 rounded-xl bg-brand-dark border border-white/10 flex items-center justify-center ${item.color} group-hover:scale-110 group-hover:${item.bgColor} transition-all`}
                       >
-                        <ItemIcon className="w-6 h-6" />
+                        <ItemIcon className="w-6 h-6" aria-hidden="true" />
                       </div>
                       <div>
                         <div

@@ -51,17 +51,34 @@ import "aos/dist/aos.css";
 
       if (!isTouch) {
         let frameRequested = false;
+        let cards: NodeListOf<Element> | null = null;
+
+        // Cache cards on initial load and potentially on resize/DOM change
+        const updateCardCache = () => {
+          cards = document.querySelectorAll(".glow-card");
+        };
+
+        updateCardCache();
+
+        // Update cache when DOM changes (e.g., after navigation or dynamic loading)
+        const observer = new MutationObserver(updateCardCache);
+        observer.observe(document.body, { childList: true, subtree: true });
+
         document.addEventListener("mousemove", (e) => {
-          if (frameRequested) return;
+          if (frameRequested || !cards || cards.length === 0) return;
           frameRequested = true;
 
           requestAnimationFrame(() => {
-            const cards = document.querySelectorAll(".glow-card");
-            cards.forEach((card: any) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            cards?.forEach((card: any) => {
               const rect = card.getBoundingClientRect();
+
+              // Only update if card is in viewport
               if (rect.top < window.innerHeight && rect.bottom > 0) {
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+                const x = mouseX - rect.left;
+                const y = mouseY - rect.top;
                 card.style.setProperty("--mouse-x", `${x}px`);
                 card.style.setProperty("--mouse-y", `${y}px`);
               }

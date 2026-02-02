@@ -1,26 +1,90 @@
 [
   {
-    "title": "High-Performance Web Apps",
-    "description": "Modern web applications built with React & Astro. Lightning-fast, SEO-optimized, and infinitely scalable.",
-    "icon": "Monitor",
+    "title": "Web Design (UI/UX)",
+    "description": "Creating attractive (Visual) and easy-to-use (User Experience) interfaces.",
+    "icon": "Palette",
     "color": "brand-primary",
-    "features": ["SaaS Platforms", "E-Commerce Systems", "Web Application"],
+    "category": "Design & Content",
     "delay": 0
   },
   {
-    "title": "Futuristic UI/UX Design",
-    "description": "Interfaces that blend cutting-edge aesthetics with intuitive user experiences. Your brand, reimagined.",
-    "icon": "Smartphone",
+    "title": "Front-End Development",
+    "description": "Transforming designs into code (HTML, CSS, JS, or frameworks like Astro, React, or Vue).",
+    "icon": "Code2",
     "color": "brand-secondary",
-    "features": ["Motion Design", "Design Systems", "Brand Identity"],
+    "category": "Development",
+    "delay": 50
+  },
+  {
+    "title": "Back-End Development",
+    "description": "For complex systems like databases, member logins, or API integrations.",
+    "icon": "Database",
+    "color": "purple-400",
+    "category": "Development",
     "delay": 100
   },
   {
-    "title": "Progressive Web Apps",
-    "description": "Installable web apps that work offline. Native app feel, without the app store hassle.",
-    "icon": "Cpu",
-    "color": "purple-400",
-    "features": ["Offline-First Architecture", "Push Notifications", "Cross-Platform"],
+    "title": "Content Management System (CMS)",
+    "description": "Providing dashboards for clients to update text/images themselves (e.g., WordPress, Sanity, or custom CMS).",
+    "icon": "Layout",
+    "color": "cyan-400",
+    "category": "Development",
+    "delay": 150
+  },
+  {
+    "title": "SEO Basic",
+    "description": "Search Engine Optimization making your website easier to find on Google.",
+    "icon": "Search",
+    "color": "brand-primary",
+    "category": "Growth & SEO",
     "delay": 200
+  },
+  {
+    "title": "Copywriting",
+    "description": "Writing persuasive words to drive sales and engagement.",
+    "icon": "PenTool",
+    "color": "brand-secondary",
+    "category": "Design & Content",
+    "delay": 250
+  },
+  {
+    "title": "Social Media Integration",
+    "description": "Connecting your website with Instagram, WhatsApp, or LinkedIn.",
+    "icon": "Share2",
+    "color": "purple-400",
+    "category": "Growth & SEO",
+    "delay": 300
+  },
+  {
+    "title": "Setup Analytics",
+    "description": "Installing Google Analytics to track visitor data and performance.",
+    "icon": "BarChart3",
+    "color": "cyan-400",
+    "category": "Growth & SEO",
+    "delay": 350
+  },
+  {
+    "title": "Maintenance & Support",
+    "description": "Fixing errors and updating plugins/software regularly.",
+    "icon": "Settings",
+    "color": "brand-primary",
+    "category": "Support & Management",
+    "delay": 400
+  },
+  {
+    "title": "Training",
+    "description": "Teaching the client's team how to operate the website effectively.",
+    "icon": "Users",
+    "color": "brand-secondary",
+    "category": "Support & Management",
+    "delay": 450
+  },
+  {
+    "title": "Monthly Reports",
+    "description": "Providing regular website performance reports for evaluation.",
+    "icon": "ClipboardList",
+    "color": "purple-400",
+    "category": "Support & Management",
+    "delay": 500
   }
 ]
