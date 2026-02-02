@@ -62,14 +62,30 @@
   }
 }
 
+/* FIX: Set background color pada level html & body agar tidak putih saat lag */
+html {
+  background-color: #0c0f19;
+}
+
 body {
   background: radial-gradient(circle at top left, var(--color-brand-dark), #0f1525 80%);
+  background-color: #0c0f19;
   color: var(--color-brand-light);
   font-family: var(--font-display);
   overflow-x: hidden;
   position: relative;
   cursor: default;
   user-select: none;
+  /* Mencegah bounce putih di mobile */
+  overscroll-behavior-y: none;
+}
+
+/* Memastikan section tidak transparan saat render */
+section {
+  background-color: #0c0f19;
+  position: relative;
+  /* Hardware acceleration untuk kelancaran render */
+  transform: translateZ(0);
 }
 
 .tech-grid {
@@ -91,10 +107,10 @@ body {
   100% { background-position: 60px 60px; }
 }
 
-/* Glow Card Effect */
 .glow-card {
   position: relative;
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  will-change: transform, box-shadow;
 }
 
 .glow-card:hover {
@@ -153,15 +169,9 @@ body {
 }
 
 @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .animate-gradient {
@@ -174,13 +184,12 @@ body {
   animation-delay: 3s;
 }
 
-/* Performance Optimization: Content Visibility */
-section:not(#home) {
+/* FIX: Content visibility dimatikan agar tidak muncul kotak kosong saat scroll mobile */
+/* section:not(#home) {
   content-visibility: auto;
-  contain-intrinsic-size: 0 500px; /* Placeholder size to prevent jumpiness */
-}
+  contain-intrinsic-size: 0 500px;
+} */
 
-/* Ensure the above doesn't break AOS visibility */
 .aos-animate {
   content-visibility: visible !important;
 }
