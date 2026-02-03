@@ -4,6 +4,7 @@ import "../styles/global.css";
 import "aos/dist/aos.css";
 ---
 
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -23,23 +24,14 @@ import "aos/dist/aos.css";
       content="black-translucent"
     />
 
-    <link rel="icon" type="image/png" href={siteData.logo} />
-    <link rel="apple-touch-icon" href={siteData.logo} />
+    <link rel="icon" type="image/webp" href="/logo.webp" />
+    <link rel="apple-touch-icon" href="/logo.webp" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap"
       rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/outfit/v11/QGYsz_ueSjtS_O7xMA.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
     />
 
     <style is:inline>
@@ -49,20 +41,19 @@ import "aos/dist/aos.css";
         --color-brand-secondary: #4080bf;
         --color-brand-light: #f8fbfd;
       }
-      /* Mencegah layar putih saat browser pertama kali me-render */
-      html,
-      body {
+      html {
         background-color: #0c0f19 !important;
+      }
+      body {
+        background-color: #0c0f19;
+        color: #f8fbfd;
+        font-family: "Outfit", sans-serif;
         margin: 0;
         padding: 0;
       }
-      body {
-        color: #f8fbfd;
-        font-family: "Outfit", sans-serif;
-      }
     </style>
 
-    <link rel="preload" href="/logo.png" as="image" />
+    <link rel="preload" href="/logo.webp" as="image" />
     <link rel="manifest" href="/manifest.json" />
   </head>
   <body
@@ -73,63 +64,50 @@ import "aos/dist/aos.css";
     <script>
       import AOS from "aos";
 
-      // Initialize AOS dengan offset lebih kecil untuk Mobile agar tidak telat muncul
-      window.addEventListener("load", () => {
-        setTimeout(() => {
-          AOS.init({
-            duration: 500,
-            easing: "ease-out-cubic",
-            once: true,
-            offset: 20, // Animasi muncul lebih cepat saat di-scroll
-            disable: window.innerWidth < 768 ? "mobile" : false, // Opsional: matikan jika masih lag
-          });
-        }, 100);
-      });
+      // 1. Initialize AOS
+      const initAOS = () => {
+        AOS.init({
+          duration: 500,
+          easing: "ease-out-cubic",
+          once: true,
+          offset: 20,
+          disable: window.innerWidth < 768 ? "mobile" : false,
+        });
+      };
 
+      // Gunakan event load agar AOS tidak menghambat loading awal
+      window.addEventListener("load", initAOS);
+
+      // 2. Optimized Mouse Effect (Glow Cards)
       const isTouch = window.matchMedia("(pointer: coarse)").matches;
 
       if (!isTouch) {
         let frameRequested = false;
         let cards: { el: HTMLElement; rect: DOMRect }[] = [];
 
-        const cardObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              const el = entry.target as HTMLElement;
-              if (entry.isIntersecting) {
-                cards.push({ el, rect: el.getBoundingClientRect() });
-              } else {
-                cards = cards.filter((c) => c.el !== el);
-              }
-            });
-          },
-          { threshold: 0 },
-        );
-
         const updateCardCache = () => {
-          document.querySelectorAll(".glow-card").forEach((card) => {
-            cardObserver.observe(card);
-          });
+          const cardElements = document.querySelectorAll(".glow-card");
+          cards = Array.from(cardElements).map((el) => ({
+            el: el as HTMLElement,
+            rect: el.getBoundingClientRect(),
+          }));
         };
 
-        updateCardCache();
+        // Update rect saat scroll atau resize agar posisi mouse tetap akurat
+        window.addEventListener("scroll", updateCardCache, { passive: true });
+        window.addEventListener("resize", updateCardCache, { passive: true });
 
-        window.addEventListener(
-          "scroll",
-          () => {
-            cards.forEach((c) => {
-              c.rect = c.el.getBoundingClientRect();
-            });
-          },
-          { passive: true },
-        );
+        // Initial cache
+        updateCardCache();
 
         document.addEventListener("mousemove", (e) => {
           if (frameRequested || cards.length === 0) return;
           frameRequested = true;
+
           requestAnimationFrame(() => {
             const mouseX = e.clientX;
             const mouseY = e.clientY;
+
             cards.forEach((card) => {
               const x = mouseX - card.rect.left;
               const y = mouseY - card.rect.top;
@@ -141,17 +119,18 @@ import "aos/dist/aos.css";
         });
       }
 
-      // Click Ripple Effect
+      // 3. Click Ripple Effect
       document.addEventListener("click", (e) => {
         const ripple = document.createElement("div");
         ripple.classList.add("ripple");
         const size = 100;
-        ripple.style.width = `${size}px`;
-        ripple.style.height = `${size}px`;
+        ripple.style.width = ripple.style.height = `${size}px`;
         ripple.style.left = `${e.clientX - size / 2}px`;
         ripple.style.top = `${e.clientY - size / 2}px`;
         document.body.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 800);
+
+        // Bersihkan element setelah animasi selesai
+        ripple.addEventListener("animationend", () => ripple.remove());
       });
     </script>
   </body>

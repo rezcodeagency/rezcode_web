@@ -1,89 +1,68 @@
 ---
+/**
+ * ABOUT COMPONENT - REZCODE (Clean Business Style)
+ * Fokus pada kejelasan visi dan misi tanpa elemen tambahan yang tidak perlu.
+ */
 import aboutData from "../../data/about.json";
+import { CheckCircle2 } from "lucide-react";
 ---
 
-<section id="about" class="py-24 px-6 relative z-10 overflow-hidden">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid md:grid-cols-3 gap-8">
-      {/* Motto */}
-      <div
-        data-aos="fade-up"
-        data-aos-delay="0"
-        class="p-8 rounded-[2.5rem] bg-white/5 border border-white/10 transition-all group relative overflow-hidden glow-card"
-      >
-        <div
-          class="absolute top-0 right-0 w-32 h-32 bg-brand-primary/10 blur-[50px] rounded-full group-hover:bg-brand-primary/20 transition-all"
-        >
-        </div>
-        <h2
-          class="text-brand-secondary text-[10px] font-black uppercase tracking-[0.2em] mb-4"
-        >
-          Our Ethos
+<section id="about" class="py-20 md:py-32 bg-[#020406] overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-start">
+      
+      <div data-aos="fade-up">
+        <span class="text-brand-primary font-mono text-xs font-bold uppercase tracking-[0.4em] mb-4 block">
+          About RezCode
+        </span>
+        <h2 class="text-4xl md:text-6xl font-extrabold text-white leading-tight tracking-tighter mb-8">
+          Beyond Code.<br />
+          <span class="text-transparent bg-clip-text bg-linear-to-r from-brand-primary to-cyan-400">Beyond Limits.</span>
         </h2>
-        <div class="overflow-hidden">
-          <p
-            class="text-2xl md:text-3xl font-black text-white leading-tight animate-reveal-text"
-          >
-            "Beyond Code.
-            <br />
-            <span class="text-brand-primary">Beyond Limits.</span>"
-          </p>
-        </div>
-      </div>
-
-      {/* Vision */}
-      <div
-        data-aos="fade-up"
-        data-aos-delay="100"
-        class="p-8 rounded-[2.5rem] bg-white/5 border border-white/10 transition-all group relative overflow-hidden glow-card"
-      >
-        <div
-          class="absolute top-0 right-0 w-32 h-32 bg-brand-secondary/10 blur-[50px] rounded-full group-hover:bg-brand-secondary/20 transition-all"
-        >
-        </div>
-        <h2
-          class="text-brand-secondary text-[10px] font-black uppercase tracking-[0.2em] mb-4"
-        >
-          Our Vision
-        </h2>
-        <p
-          class="text-lg text-brand-light/80 leading-relaxed group-hover:text-white transition-colors"
-        >
-          To build the fastest, simple, elegant, modern and secure web
-          solutions.
+        <p class="text-lg text-slate-400 leading-relaxed max-w-xl">
+          RezCode is a premium digital agency dedicated to transforming complex challenges into seamless, high-performance web experiences. We engineer digital solutions that are secure, scalable, and built for the future.
         </p>
       </div>
 
-      {/* Mission */}
-      <div
-        data-aos="fade-up"
-        data-aos-delay="200"
-        class="p-8 rounded-[2.5rem] bg-white/5 border border-white/10 transition-all group relative overflow-hidden glow-card"
-      >
-        <div
-          class="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-[50px] rounded-full group-hover:bg-white/10 transition-all"
-        >
+      <div class="space-y-8" data-aos="fade-up" data-aos-delay="200">
+        <div class="group">
+          <h3 class="text-white text-xs font-black uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
+            <span class="w-8 h-px bg-brand-primary/40 group-hover:w-12 transition-all"></span> Our Vision
+          </h3>
+          <p class="text-slate-300 text-base md:text-lg leading-relaxed border-l border-white/10 pl-6 ml-4">
+            To build the <span class="text-white font-bold">fastest</span>, most elegant, and <span class="text-white font-bold">secure</span> digital solutions that empower brands to scale without boundaries.
+          </p>
         </div>
-        <h3
-          class="text-brand-secondary text-[10px] font-black uppercase tracking-[0.2em] mb-4"
-        >
-          Our Mission
-        </h3>
-        <ul class="space-y-4">
-          {
-            aboutData.map((item) => (
-              <li class="flex items-start gap-3 text-brand-light/80 group/item">
-                <span
-                  class={`w-2 h-2 rounded-full bg-${item.color} mt-2 group-hover/item:scale-150 transition-transform`}
-                />
-                <span class="group-hover/item:text-white transition-colors">
-                  {item.text}
-                </span>
-              </li>
-            ))
-          }
-        </ul>
+
+        <div class="group pt-4">
+          <h3 class="text-white text-xs font-black uppercase tracking-[0.3em] mb-6 flex items-center gap-2">
+            <span class="w-8 h-px bg-brand-primary/40 group-hover:w-12 transition-all"></span> Strategic Mission
+          </h3>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 ml-4">
+            {
+              aboutData.map((item) => (
+                <li class="flex items-center gap-3 p-2 rounded-lg transition-colors group/item">
+                  <CheckCircle2 size={16} className="text-brand-primary opacity-40 group-hover/item:opacity-100 transition-opacity" />
+                  <span class="text-slate-400 group-hover/item:text-white transition-colors text-sm font-medium">
+                    {item.text}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </div>
+      
     </div>
   </div>
 </section>
+
+<style>
+  /* Standar AOS simple untuk performa */
+  @media (max-width: 768px) {
+    [data-aos] {
+      transform: none !important;
+      transition-duration: 400ms !important;
+    }
+  }
+</style>

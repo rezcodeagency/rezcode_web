@@ -1,90 +1,90 @@
 [
   {
     "title": "Web Design (UI/UX)",
-    "description": "Creating attractive (Visual) and easy-to-use (User Experience) interfaces.",
+    "description": "Creating attractive, user-centric interfaces focused on conversion and brand identity.",
     "icon": "Palette",
     "color": "brand-primary",
-    "category": "Design & Content",
-    "delay": 0
+    "category": "Design",
+    "items": ["User Research", "Visual Identity", "Interactive Prototypes"]
   },
   {
     "title": "Front-End Development",
-    "description": "Transforming designs into code (HTML, CSS, JS, or frameworks like Astro, React, or Vue).",
+    "description": "Transforming designs into high-performance code using modern frameworks like Astro or React.",
     "icon": "Code2",
     "color": "brand-secondary",
     "category": "Development",
-    "delay": 50
+    "items": ["Responsive Layouts", "Astro/React/Vue", "Speed Optimization"]
   },
   {
     "title": "Back-End Development",
-    "description": "For complex systems like databases, member logins, or API integrations.",
+    "description": "Building secure, scalable server-side systems, database architecture, and API integrations.",
     "icon": "Database",
-    "color": "purple-400",
+    "color": "brand-primary",
     "category": "Development",
-    "delay": 100
+    "items": ["Node.js/Python", "Database Design", "API Development"]
   },
   {
-    "title": "Content Management System (CMS)",
-    "description": "Providing dashboards for clients to update text/images themselves (e.g., WordPress, Sanity, or custom CMS).",
+    "title": "Custom CMS Solutions",
+    "description": "Providing intuitive dashboards for easy content updates without touching a single line of code.",
     "icon": "Layout",
-    "color": "cyan-400",
+    "color": "brand-secondary",
     "category": "Development",
-    "delay": 150
+    "items": ["Headless CMS", "WordPress Custom", "Admin Dashboards"]
   },
   {
-    "title": "SEO Basic",
-    "description": "Search Engine Optimization making your website easier to find on Google.",
+    "title": "SEO Strategy",
+    "description": "Optimizing website structure and content to improve rankings and visibility on search engines.",
     "icon": "Search",
     "color": "brand-primary",
-    "category": "Growth & SEO",
-    "delay": 200
+    "category": "Growth",
+    "items": ["On-Page SEO", "Technical Audit", "Keyword Strategy"]
   },
   {
     "title": "Copywriting",
-    "description": "Writing persuasive words to drive sales and engagement.",
+    "description": "Crafting persuasive and engaging copy designed to drive sales and communicate value.",
     "icon": "PenTool",
     "color": "brand-secondary",
-    "category": "Design & Content",
-    "delay": 250
+    "category": "Design",
+    "items": ["Sales Copy", "Microcopy", "Content Strategy"]
   },
   {
-    "title": "Social Media Integration",
-    "description": "Connecting your website with Instagram, WhatsApp, or LinkedIn.",
+    "title": "Digital Integration",
+    "description": "Connecting your ecosystem with social media platforms and third-party communication tools.",
     "icon": "Share2",
-    "color": "purple-400",
-    "category": "Growth & SEO",
-    "delay": 300
+    "color": "brand-primary",
+    "category": "Growth",
+    "items": ["Social Feeds", "WhatsApp API", "LinkedIn Auth"]
   },
   {
-    "title": "Setup Analytics",
-    "description": "Installing Google Analytics to track visitor data and performance.",
+    "title": "Data Analytics",
+    "description": "Deep-dive performance tracking to understand visitor behavior and business ROI.",
     "icon": "BarChart3",
-    "color": "cyan-400",
-    "category": "Growth & SEO",
-    "delay": 350
+    "color": "brand-secondary",
+    "category": "Growth",
+    "items": ["Google Analytics 4", "Event Tracking", "Custom Reports"]
   },
   {
     "title": "Maintenance & Support",
-    "description": "Fixing errors and updating plugins/software regularly.",
+    "description": "Ensuring your digital assets stay secure, up-to-date, and error-free at all times.",
     "icon": "Settings",
     "color": "brand-primary",
-    "category": "Support & Management",
-    "delay": 400
+    "category": "Management",
+    "items": ["Security Patching", "Regular Backups", "Bug Fixing"]
   },
   {
-    "title": "Training",
-    "description": "Teaching the client's team how to operate the website effectively.",
+    "title": "Client Training",
+    "description": "Empowering your team with the knowledge to manage and operate your new digital platform.",
     "icon": "Users",
     "color": "brand-secondary",
-    "category": "Support & Management",
-    "delay": 450
+    "category": "Management",
+    "items": ["CMS Training", "Best Practices", "Documentation"]
   },
   {
-    "title": "Monthly Reports",
-    "description": "Providing regular website performance reports for evaluation.",
+    "title": "Performance Reports",
+    "description": "Monthly strategic audits providing actionable insights for continuous growth.",
     "icon": "ClipboardList",
-    "color": "purple-400",
-    "category": "Support & Management",
-    "delay": 500
+    "color": "brand-primary",
+    "category": "Management",
+    "items": ["Uptime Monitoring", "Traffic Analysis", "Growth Suggestions"]
   }
 ]

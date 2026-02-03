@@ -1,6 +1,6 @@
 {
   "name": "RezCode",
-  "logo": "/logo.png",
+  "logo": "/logo.webp",
   "navigation": [
     { "name": "Home", "href": "#home", "icon": "Home" },
     { "name": "About", "href": "#about", "icon": "User" },

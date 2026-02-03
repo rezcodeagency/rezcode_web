@@ -2,7 +2,7 @@ const CACHE_NAME = 'rezcode-v2'; // Incrementing version to force update
 const ASSETS = [
   '/',
   '/manifest.json',
-  '/logo.png'
+  '/logo.webp'
 ];
 
 self.addEventListener('install', (event) => {

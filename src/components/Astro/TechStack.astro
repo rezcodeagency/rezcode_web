@@ -1,147 +1,74 @@
 ---
 /**
- * TECH STACK - ULTRA CLEAN VERSION
- * Portofolio: FARELL RHEZKY ALVIANTO
+ * TECH STACK - FARELL RHEZKY ALVIANTO
+ * Style: Ultra-Minimalist & Ultra-Compact
+ * No Gradients, No Shadows, Just Clean Motion
  */
-import {
-  Atom,
-  Rocket,
-  Wind,
-  Server,
-  Braces,
-  Database,
-  Globe,
-  Layout,
-  Cpu,
-  PenTool,
-  GitBranch,
-  Terminal,
-} from "lucide-react";
 import techStackData from "../../data/techstack.json";
-
-const IconMap: any = {
-  Atom,
-  Rocket,
-  Wind,
-  Server,
-  Braces,
-  Database,
-  Globe,
-  Layout,
-  Cpu,
-  PenTool,
-  GitBranch,
-  Terminal,
-};
+const allSkills = techStackData.flatMap(category => category.items);
 ---
 
-<section
-  id="tech-stack"
-  class="py-24 bg-[#03050a] relative overflow-hidden"
-  aria-labelledby="tech-heading"
->
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <header class="mb-16">
-      <h2
-        id="tech-heading"
-        class="text-4xl md:text-6xl font-black text-white tracking-tighter"
-      >
-        Tech <span class="text-brand-primary italic">Stack.</span>
+<section id="tech-stack" class="py-12 bg-[#020406] border-b border-white/[0.05] relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 relative z-10">
+    
+    <div class="text-center mb-8">
+      <span class="text-brand-primary font-mono text-[8px] font-bold uppercase tracking-[0.4em] mb-1 block">
+        Capabilities
+      </span>
+      <h2 class="text-2xl md:text-4xl font-extrabold text-white tracking-tighter">
+        Core <span class="text-white/20 italic font-medium">Stack.</span>
       </h2>
-      <div class="h-1.5 w-16 bg-brand-primary mt-4 rounded-full"></div>
-    </header>
+    </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {
-        techStackData.map((category, catIndex) => {
-          const CategoryIcon = IconMap[category.icon] || Terminal;
-
-          return (
-            <article
-              class="tech-card group bg-[#0a0d14] border border-white/5 p-8 rounded-[2rem] hover:border-brand-primary/30 transition-all duration-300 opacity-0 translate-y-4 shadow-xl"
-              style={`transition-delay: ${catIndex * 50}ms`}
-            >
-              <div class="flex items-center gap-3 mb-10 border-b border-white/5 pb-4">
-                <div class="text-brand-primary">
-                  <CategoryIcon size={18} aria-hidden="true" />
-                </div>
-                <h3 class="text-xs font-bold text-white/50 uppercase tracking-widest">
-                  {category.category}
-                </h3>
-              </div>
-
-              <div class="space-y-6">
-                {category.items.map((item) => {
-                  const ItemIcon = IconMap[item.icon] || Terminal;
-                  // Mengambil class warna dari JSON (contoh: text-cyan-400)
-                  const techColor = item.color || "text-white";
-
-                  return (
-                    <div class="flex items-center gap-4 group/item">
-                      <div
-                        class={`w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center transition-all duration-200 group-hover/item:bg-white/10 ${techColor}`}
-                      >
-                        <ItemIcon size={20} aria-hidden="true" />
-                      </div>
-
-                      <div>
-                        <h4
-                          class={`text-sm font-bold transition-colors ${techColor} brightness-125`}
-                        >
-                          {item.name}
-                        </h4>
-                        <p class="text-[11px] text-white/30 font-medium">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </article>
-          );
-        })
-      }
+    <div class="relative overflow-hidden group">
+      <div class="flex gap-3 animate-marquee whitespace-nowrap py-2">
+        {/* Render data 2-3 kali untuk infinite loop yang smooth */}
+        {[...allSkills, ...allSkills, ...allSkills].map((tech) => (
+          <div class="flex-shrink-0 flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.02] border border-white/[0.05] hover:border-brand-primary/30 transition-colors">
+            <img 
+              src={tech.icon} 
+              alt={tech.name}
+              class="w-5 h-5 object-contain grayscale opacity-40 group-hover:opacity-100 transition-opacity"
+              loading="lazy"
+            />
+            <span class="text-[9px] font-bold text-white/30 uppercase tracking-tight">
+              {tech.name}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  /* Animasi dikontrol via Intersection Observer untuk skor Lighthouse 100 */
-  .tech-card {
-    will-change: transform, opacity;
-    contain: content;
+  /* Gerakan Marquee yang Lebih Cepat & Ringan */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.33%); }
   }
 
-  .tech-card.revealed {
-    opacity: 1;
-    transform: translateY(0);
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 25s linear infinite;
   }
 
-  /* Hilangkan scrollbar horizontal jika ada overflow pada mobile */
+  /* Hilangkan animasi jika user prefer reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  section {
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
 </style>
-
-<script>
-  /**
-   * LIGHTHOUSE OPTIMIZATION
-   * Memicu animasi masuk secara cepat (snappy)
-   */
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          (entry.target as HTMLElement).classList.add("revealed");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 },
-  );
-
-  document
-    .querySelectorAll(".tech-card")
-    .forEach((card) => observer.observe(card));
-</script>

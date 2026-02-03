@@ -1,5 +1,10 @@
 ---
-import { Search, PenTool, Code2, Rocket } from "lucide-react";
+/**
+ * WORKFLOW SECTION - FARELL RHEZKY ALVIANTO
+ * Mobile: Interactive Accordion
+ * Desktop: Git-Flow Pipeline
+ */
+import { Search, PenTool, Code2, Rocket, ChevronDown } from "lucide-react";
 import workflowData from "../../data/workflow.json";
 
 const IconMap: any = {
@@ -10,74 +15,106 @@ const IconMap: any = {
 };
 ---
 
-<section id="workflow" class="py-24 bg-brand-dark relative overflow-hidden">
-  <div class="absolute inset-0 bg-brand-primary/5 opacity-50 tech-grid"></div>
-
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="text-center mb-20">
-      <h2
-        class="text-brand-secondary font-bold tracking-widest uppercase text-xs mb-4"
-        data-aos="fade-up"
-      >
-        Our Process
+<section id="workflow" class="py-16 md:py-32 bg-[#020406] border-y border-white/[0.05] relative overflow-hidden">
+  <div class="max-w-5xl mx-auto px-6 relative">
+    
+    <div class="mb-12 md:mb-16 text-center md:text-left">      
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tighter">
+        Strategic <span class="text-white/20 italic font-medium">Pipeline.</span>
       </h2>
-      <div class="overflow-hidden">
-        <h3
-          class="text-4xl md:text-5xl font-black text-white tracking-tighter"
-          data-aos="fade-up"
-          data-aos-delay="100"
-        >
-          Your Vision, <span class="text-brand-primary">Our Execution.</span>
-        </h3>
-      </div>
-      <p
-        class="text-brand-light/60 mt-4 max-w-xl mx-auto text-sm md:text-base leading-relaxed"
-        data-aos="fade-up"
-        data-aos-delay="200"
-      >
-        A strategic workflow designed to ensure your website isn't just visually
-        stunning, but also high-performing for your business or personal brand.
-      </p>
     </div>
 
-    <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-      <div
-        class="hidden lg:block absolute top-12 left-[10%] w-[80%] h-[1px] bg-gradient-to-r from-transparent via-brand-primary/20 to-transparent"
-      >
-      </div>
-
-      {
-        workflowData.map((step, index) => {
-          const Icon = IconMap[step.icon];
-          return (
-            <div
-              data-aos="fade-up"
-              data-aos-delay={index * 150}
-              class="relative group text-center"
+    <div class="md:hidden space-y-3">
+      {workflowData.map((step, index) => {
+        const Icon = IconMap[step.icon];
+        return (
+          <div class="workflow-accordion border border-white/5 rounded-xl bg-white/[0.02] overflow-hidden">
+            <button 
+              class="w-full p-5 flex items-center justify-between text-left transition-colors hover:bg-white/[0.03]"
+              aria-expanded="false"
             >
-              <div class="absolute -top-4 left-1/2 -translate-x-1/2 text-[6rem] font-black text-white/[0.02] select-none pointer-events-none group-hover:text-brand-primary/5 transition-colors duration-500">
-                0{index + 1}
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 rounded-lg bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
+                   <Icon className="w-4 h-4 text-brand-primary" />
+                </div>
+                <div>
+                  <span class="text-[9px] font-mono text-brand-primary/40 block">Phase 0{index + 1}</span>
+                  <h4 class="text-sm font-bold text-white">{step.title}</h4>
+                </div>
               </div>
-
-              <div class="w-20 h-20 mx-auto bg-brand-dark border border-white/10 rounded-2xl flex items-center justify-center mb-8 relative z-10 group-hover:border-brand-primary group-hover:shadow-[0_0_30px_rgba(var(--brand-primary-rgb),0.2)] transition-all duration-500 bg-gradient-to-br from-white/[0.05] to-transparent">
-                <Icon
-                  className="w-8 h-8 text-brand-primary group-hover:scale-110 transition-transform duration-500"
-                  aria-hidden="true"
-                />
-              </div>
-
-              <div class="relative z-10 px-4">
-                <h4 class="text-xl font-bold text-white mb-3 group-hover:text-brand-primary transition-colors">
-                  {step.title}
-                </h4>
-                <p class="text-sm text-white/50 leading-relaxed min-h-[60px]">
+              <ChevronDown className="w-4 h-4 text-white/20 transition-transform duration-300 arrow-icon" />
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <div class="px-5 pb-5 pl-[68px]">
+                <p class="text-xs text-slate-500 leading-relaxed">
                   {step.description}
                 </p>
               </div>
             </div>
-          );
-        })
-      }
+          </div>
+        )
+      })}
     </div>
+
+    <div class="hidden md:block relative">
+      <div class="absolute left-0 top-0 w-full h-[2px] bg-gradient-to-r from-brand-primary/50 via-brand-primary/20 to-transparent z-0"></div>
+      <div class="grid grid-cols-4 gap-6 relative z-10">
+        {workflowData.map((step, index) => {
+          const Icon = IconMap[step.icon];
+          return (
+            <div class="relative group pt-10">
+              <div class="absolute left-0 -top-[5px] w-3 h-3 rounded-full bg-brand-primary shadow-[0_0_15px_rgba(var(--brand-primary-rgb),0.8)] z-20 transition-transform duration-500 group-hover:scale-150"></div>
+              <div class="p-5 rounded-xl bg-white/[0.02] border border-white/[0.05] group-hover:bg-white/[0.04] group-hover:border-brand-primary/30 transition-all duration-300 h-full">
+                <div class="w-8 h-8 rounded-lg bg-brand-primary/10 flex items-center justify-center mb-4 border border-brand-primary/20 group-hover:bg-brand-primary transition-colors">
+                  <Icon className="w-4 h-4 text-brand-primary group-hover:text-white transition-colors" />
+                </div>
+                <div class="flex items-center gap-2 mb-2">
+                   <span class="text-[10px] font-mono text-brand-primary/40 font-bold">0{index + 1}</span>
+                   <h4 class="text-sm font-bold text-white group-hover:text-brand-primary transition-colors">{step.title}</h4>
+                </div>
+                <p class="text-[11px] text-slate-500 leading-relaxed line-clamp-3 italic">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+
   </div>
 </section>
+
+<script>
+  // Script untuk menangani Accordion
+  const accordions = document.querySelectorAll('.workflow-accordion');
+  
+  accordions.forEach(acc => {
+    const btn = acc.querySelector('button');
+    const content = acc.querySelector('.accordion-content') as HTMLElement;
+    const arrow = acc.querySelector('.arrow-icon');
+
+    btn?.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      
+      // Close all others (Optional: comment this if you want multiple open)
+      accordions.forEach(other => {
+        other.querySelector('button')?.setAttribute('aria-expanded', 'false');
+        (other.querySelector('.accordion-content') as HTMLElement).style.maxHeight = '0';
+        other.querySelector('.arrow-icon')?.classList.remove('rotate-180');
+      });
+
+      // Toggle current
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        content.style.maxHeight = content.scrollHeight + "px";
+        arrow?.classList.add('rotate-180');
+      }
+    });
+  });
+</script>
+
+<style>
+  section { contain: paint; }
+  :root { --brand-primary-rgb: 20, 184, 166; }
+</style>

@@ -1,101 +1,35 @@
 [
   {
-    "category": "Core",
-    "description": "The foundation of every project we build.",
-    "icon": "Layout",
-    "color": "text-cyan-400",
-    "bgColor": "bg-cyan-500/20",
+    "category": "Frontend",
     "items": [
-      {
-        "name": "Astro",
-        "description": "Ultra-Fast Static Sites",
-        "icon": "Rocket",
-        "color": "text-orange-400",
-        "bgColor": "bg-orange-400/10"
-      },
-      {
-        "name": "React 19",
-        "description": "Modern UI Framework",
-        "icon": "Atom",
-        "color": "text-cyan-400",
-        "bgColor": "bg-cyan-400/10"
-      },
-      {
-        "name": "TypeScript",
-        "description": "Type-Safe Development",
-        "icon": "Braces",
-        "color": "text-blue-400",
-        "bgColor": "bg-blue-400/10"
-      }
+      { "name": "Astro", "icon": "https://api.iconify.design/simple-icons:astro.svg?color=white" },
+      { "name": "React", "icon": "https://api.iconify.design/simple-icons:react.svg?color=%2361DAFB" },
+      { "name": "TypeScript", "icon": "https://api.iconify.design/simple-icons:typescript.svg?color=%233178C6" },
+      { "name": "Next.js", "icon": "https://api.iconify.design/simple-icons:nextdotjs.svg?color=white" },
+      { "name": "Tailwind", "icon": "https://api.iconify.design/simple-icons:tailwindcss.svg?color=%2306B6D4" },
+      { "name": "Framer", "icon": "https://api.iconify.design/simple-icons:framer.svg?color=%230055FF" }
     ]
   },
   {
-    "category": "Style",
-    "description": "Design systems that bring interfaces to life.",
-    "icon": "PenTool",
-    "color": "text-teal-400",
-    "bgColor": "bg-teal-500/20",
+    "category": "Backend & DB",
     "items": [
-      {
-        "name": "Tailwind CSS v4",
-        "description": "Utility-First Design",
-        "icon": "Wind",
-        "color": "text-teal-400",
-        "bgColor": "bg-teal-400/10"
-      },
-      {
-        "name": "Framer Motion",
-        "description": "Fluid Animations",
-        "icon": "Cpu",
-        "color": "text-purple-400",
-        "bgColor": "bg-purple-400/10"
-      }
+      { "name": "Node.js", "icon": "https://api.iconify.design/simple-icons:nodedotjs.svg?color=%23339933" },
+      { "name": "Laravel", "icon": "https://api.iconify.design/simple-icons:laravel.svg?color=%23FF2D20" },
+      { "name": "PostgreSQL", "icon": "https://api.iconify.design/simple-icons:postgresql.svg?color=%234169E1" },
+      { "name": "MongoDB", "icon": "https://api.iconify.design/simple-icons:mongodb.svg?color=%2347A248" },
+      { "name": "Prisma", "icon": "https://api.iconify.design/simple-icons:prisma.svg?color=white" },
+      { "name": "MySQL", "icon": "https://api.iconify.design/simple-icons:mysql.svg?color=%234479A1" }
     ]
   },
   {
     "category": "Tools",
-    "description": "Professional workflow and deployment.",
-    "icon": "GitBranch",
-    "color": "text-purple-400",
-    "bgColor": "bg-purple-500/20",
     "items": [
-      {
-        "name": "GitHub",
-        "description": "Version Control",
-        "icon": "GitBranch",
-        "color": "text-red-400",
-        "bgColor": "bg-red-400/10"
-      },
-      {
-        "name": "Vercel",
-        "description": "Edge Deployment",
-        "icon": "Globe",
-        "color": "text-brand-primary",
-        "bgColor": "bg-white/10"
-      }
-    ]
-  },
-  {
-    "category": "Database",
-    "description": "Scalable data storage solutions.",
-    "icon": "Database",
-    "color": "text-green-400",
-    "bgColor": "bg-green-500/20",
-    "items": [
-      {
-        "name": "MongoDB",
-        "description": "NoSQL Database",
-        "icon": "Database",
-        "color": "text-green-400",
-        "bgColor": "bg-green-400/10"
-      },
-      {
-        "name": "PostgreSQL",
-        "description": "Relational Database",
-        "icon": "Server",
-        "color": "text-blue-400",
-        "bgColor": "bg-blue-400/10"
-      }
+      { "name": "GitHub", "icon": "https://api.iconify.design/simple-icons:github.svg?color=white" },
+      { "name": "Vercel", "icon": "https://api.iconify.design/simple-icons:vercel.svg?color=white" },
+      { "name": "Docker", "icon": "https://api.iconify.design/simple-icons:docker.svg?color=%232496ED" },
+      { "name": "Figma", "icon": "https://api.iconify.design/simple-icons:figma.svg?color=%23F24E1E" },
+      { "name": "Postman", "icon": "https://api.iconify.design/simple-icons:postman.svg?color=%23FF6C37" },
+      { "name": "Git", "icon": "https://api.iconify.design/simple-icons:git.svg?color=%23F05032" }
     ]
   }
 ]

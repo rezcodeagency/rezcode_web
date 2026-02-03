@@ -1,119 +1,86 @@
 ---
+/**
+ * TEAM SECTION - FARELL RHEZKY ALVIANTO
+ * Accessibility & Mobile Focused
+ */
 import teamData from "../../data/team.json";
 import { Image } from "astro:assets";
-import {
-  Github,
-  Linkedin,
-  Instagram,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { Github, Linkedin, Instagram } from "lucide-react";
 ---
 
-<section
-  id="team"
-  class="py-24 bg-[#0a0d17] relative overflow-hidden border-t border-white/5"
->
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div
-      class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
-    >
-      <div data-aos="fade-right">
-        <h2
-          class="text-brand-secondary font-bold tracking-[0.3em] uppercase text-xs mb-4"
-        >
-          The Collective
+<section id="team" class="py-12 md:py-24 bg-[#020406] border-t border-white/5 relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    
+    <div class="mb-10 flex justify-between items-end">
+      <div>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tighter">
+          Our <span class="text-white/20 italic font-medium">Team.</span>
         </h2>
-        <h3 class="text-4xl md:text-6xl font-black text-white tracking-tighter">
-          Meet Our Team
-        </h3>
       </div>
-
-      <div class="hidden md:flex gap-3" data-aos="fade-left">
-        <button
-          id="team-prev"
-          class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-primary transition-all duration-300 group"
-        >
-          <ChevronLeft
-            className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform"
-          />
-        </button>
-        <button
-          id="team-next"
-          class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-primary transition-all duration-300 group"
-        >
-          <ChevronRight
-            className="w-6 h-6 group-hover:translate-x-0.5 transition-transform"
-          />
-        </button>
+      
+      <div class="flex items-center gap-2 md:hidden">
+        <span class="text-[10px] text-white/20 font-bold uppercase tracking-widest">Swipe</span>
+        <div class="w-8 h-[1px] bg-white/20"></div>
       </div>
     </div>
 
-    <div
-      id="team-slider"
-      class="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-12"
+    <div 
+      class="flex md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 overflow-x-auto md:overflow-visible pb-10 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0"
+      aria-label="Team Members"
     >
       {
         teamData.map((member, index) => (
           <div
-            class="w-[300px] md:w-[380px] flex-shrink-0 snap-center group relative rounded-[2.5rem] bg-white/[0.03] backdrop-blur-3xl border border-white/10 hover:border-brand-primary/50 transition-all duration-500 overflow-hidden"
+            class="min-w-[280px] sm:min-w-[300px] md:min-w-0 group relative flex flex-col p-7 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:border-brand-primary/30 transition-all duration-300 snap-center"
             data-aos="fade-up"
-            data-aos-delay={index * 100}
+            data-aos-delay={index * 50}
           >
-            {/* Background Accent */}
-            <div class={`h-32 bg-gradient-to-br ${member.color} opacity-80`} />
-
-            <div class="relative -mt-16 px-6 pb-10 text-center">
-              {/* Profile Image / Initials */}
-              <div class="w-28 h-28 mx-auto rounded-[2rem] overflow-hidden border-4 border-[#0a0d17] bg-brand-dark shadow-2xl mb-6 group-hover:scale-105 transition-transform duration-500">
+            <div class="relative mb-6 flex justify-center md:justify-start">
+              <div class="w-20 h-20 rounded-2xl overflow-hidden border border-white/10 bg-brand-dark group-hover:border-brand-primary/50 transition-all duration-500">
                 {member.image ? (
                   <Image
                     src={member.image}
                     alt={member.name}
-                    width={200}
-                    height={200}
-                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                    width={150}
+                    height={150}
+                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105"
                   />
                 ) : (
-                  <div class="w-full h-full flex items-center justify-center text-2xl font-black text-brand-primary bg-brand-primary/5">
+                  <div class="w-full h-full flex items-center justify-center text-xl font-black text-brand-primary bg-brand-primary/5">
                     {member.initials}
                   </div>
                 )}
               </div>
+            </div>
 
-              <span class="text-[10px] text-brand-primary font-black uppercase tracking-widest px-3 py-1 bg-brand-primary/10 rounded-full inline-block mb-4">
+            <div class="text-center md:text-left">
+              <span class="text-[9px] font-bold text-brand-primary uppercase tracking-[0.2em] mb-1 block">
                 {member.role}
               </span>
-
-              <h4 class="text-2xl font-black text-white mb-2 tracking-tight group-hover:text-brand-primary transition-colors">
+              <h4 class="text-lg font-bold text-white mb-2 tracking-tight group-hover:text-brand-primary transition-colors">
                 {member.name}
               </h4>
-
-              <p class="text-white/50 text-sm leading-relaxed mb-8 line-clamp-2 px-4 italic">
-                "{member.bio}"
+              <p class="text-slate-500 text-[12px] leading-relaxed mb-8 line-clamp-3">
+                {member.bio}
               </p>
 
-              {/* Social Media Links with Popup Integration */}
-              <div class="flex justify-center gap-3">
+              <div class="flex justify-center md:justify-start gap-2">
                 {[
-                  { icon: Linkedin, url: member.linkedin },
-                  { icon: Github, url: member.github },
-                  { icon: Instagram, url: member.instagram },
-                ].map(
-                  (social) =>
-                    social.url && (
-                      <a
-                        href={social.url}
-                        target={social.url === "#" ? "_self" : "_blank"}
-                        rel={social.url === "#" ? "" : "noopener noreferrer"}
-                        onclick={
-                          social.url === "#" ? "openComingSoonModal(event)" : ""
-                        }
-                        class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/5 text-white/40 hover:text-brand-primary hover:bg-brand-primary/10 transition-all cursor-pointer"
-                      >
-                        <social.icon className="w-4 h-4" />
-                      </a>
-                    ),
+                  { icon: Linkedin, url: member.linkedin, label: "Linkedin" },
+                  { icon: Github, url: member.github, label: "Github" },
+                  { icon: Instagram, url: member.instagram, label: "Instagram" },
+                ].map((social) =>
+                  social.url && (
+                    <a
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${social.label} profile of ${member.name}`}
+                      class="w-11 h-11 flex items-center justify-center rounded-xl bg-white/[0.03] border border-white/5 text-white/40 hover:text-brand-primary hover:bg-brand-primary/10 transition-all"
+                    >
+                      <social.icon className="w-4 h-4" />
+                    </a>
+                  )
                 )}
               </div>
             </div>
@@ -121,29 +88,29 @@ import {
         ))
       }
     </div>
+
+    <div class="mt-4 flex justify-center gap-1.5 md:hidden">
+      {teamData.map((_, i) => (
+        <div class="h-1 w-4 rounded-full bg-white/10 group-active:bg-brand-primary"></div>
+      ))}
+    </div>
   </div>
 </section>
 
 <style>
+  /* Sembunyikan scrollbar bawaan untuk pengalaman swipe yang lebih native */
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+    /* Memberikan efek elastic scrolling pada iOS */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Optimalisasi Touch Performance */
+  a, button {
+    touch-action: manipulation;
   }
 </style>
-
-<script>
-  const slider = document.getElementById("team-slider") as HTMLElement;
-  const prev = document.getElementById("team-prev");
-  const next = document.getElementById("team-next");
-
-  if (slider && prev && next) {
-    const scrollAmount = 400;
-    prev.onclick = () =>
-      slider.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-    next.onclick = () =>
-      slider.scrollBy({ left: scrollAmount, behavior: "smooth" });
-  }
-</script>
